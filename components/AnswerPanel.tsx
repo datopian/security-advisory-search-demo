@@ -54,12 +54,14 @@ export function AnswerPanel({
   question,
   fallbackSuggestions,
   onAskFollowup,
+  showSuggestions = true,
 }: {
   result: AskResponse
   accentColor: string
   question: string
   fallbackSuggestions: string[]
   onAskFollowup: (q: string) => void
+  showSuggestions?: boolean
 }) {
   return (
     <div className="mt-8 space-y-5 animate-fade-up">
@@ -118,21 +120,22 @@ export function AnswerPanel({
         </div>
       )}
 
-      {result.citations.length > 0 ? (
-        <SuggestionChips
-          label="Keep exploring"
-          questions={result.followups}
-          accentColor={accentColor}
-          onAsk={onAskFollowup}
-        />
-      ) : (
-        <SuggestionChips
-          label="Try asking instead"
-          questions={fallbackSuggestions}
-          accentColor={accentColor}
-          onAsk={onAskFollowup}
-        />
-      )}
+      {showSuggestions &&
+        (result.citations.length > 0 ? (
+          <SuggestionChips
+            label="Keep exploring"
+            questions={result.followups}
+            accentColor={accentColor}
+            onAsk={onAskFollowup}
+          />
+        ) : (
+          <SuggestionChips
+            label="Try asking instead"
+            questions={fallbackSuggestions}
+            accentColor={accentColor}
+            onAsk={onAskFollowup}
+          />
+        ))}
     </div>
   )
 }

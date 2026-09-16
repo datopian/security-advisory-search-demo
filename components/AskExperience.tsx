@@ -1,11 +1,11 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { BrandHeader } from './BrandHeader'
 import { Footer } from './Footer'
 import { RoleToggle } from './RoleToggle'
 import { AnswerPanel } from './AnswerPanel'
 import { CorpusBadge } from './CorpusBadge'
 import { BrandConfig } from '../lib/brands'
-import { AskResponse, Role } from '../lib/types'
+import { AskResponse, ROLE_LABELS, Role } from '../lib/types'
 
 const EXAMPLE_QUESTIONS = [
   'Which vulnerabilities affect remote access software this year?',
@@ -15,6 +15,15 @@ const EXAMPLE_QUESTIONS = [
   'What flaws affect media or streaming server software?',
   'Are there any SQL injection vulnerabilities reported?',
 ]
+
+interface Turn {
+  id: number
+  question: string
+  role: Role
+  loading: boolean
+  error: string | null
+  result: AskResponse | null
+}
 
 function AskIcon() {
   return (
@@ -31,7 +40,7 @@ function AskIcon() {
 
 function ThinkingIndicator({ color }: { color: string }) {
   return (
-    <div className="mt-8 flex items-center gap-3 text-sm text-gray-500">
+    <div className="mt-4 flex items-center gap-3 text-sm text-gray-500">
       <div className="flex gap-1">
         <span className="thinking-dot h-2 w-2 rounded-full" style={{ backgroundColor: color }} />
         <span className="thinking-dot h-2 w-2 rounded-full" style={{ backgroundColor: color }} />
@@ -43,43 +52,44 @@ function ThinkingIndicator({ color }: { color: string }) {
 }
 
 export function AskExperience({ brand }: { brand: BrandConfig }) {
-  const [question, setQuestion] = useState('')
+  const [inputValue, setInputValue] = useState('')
   const [role, setRole] = useState<Role>('public')
-  const [result, setResult] = useState<AskResponse | null>(null)
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const [turns, setTurns] = useState<Turn[]>([])
+  const nextId = useRef(0)
 
-  async function ask(q: string, r: Role) {
-    if (!q.trim()) return
-    setLoading(true)
-    setError(null)
+  const isBusy = turns.some((t) => t.loading)
+
+  async function ask(question: string, r: Role) {
+    if (!question.trim() || isBusy) return
+    const id = nextId.current++
+    setTurns((prev) => [...prev, { id, question, role: r, loading: true, error: null, result: null }])
+
     try {
       const res = await fetch('/api/ask', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ question: q, role: r }),
+        body: JSON.stringify({ question, role: r }),
       })
       const json = await res.json()
       if (!res.ok) throw new Error(json.error || 'Request failed')
-      setResult(json)
+      setTurns((prev) => prev.map((t) => (t.id === id ? { ...t, loading: false, result: json } : t)))
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Something went wrong')
-      setResult(null)
-    } finally {
-      setLoading(false)
+      const message = err instanceof Error ? err.message : 'Something went wrong'
+      setTurns((prev) => prev.map((t) => (t.id === id ? { ...t, loading: false, error: message } : t)))
     }
   }
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    ask(question, role)
+    const q = inputValue
+    setInputValue('')
+    ask(q, role)
   }
 
   function handleRoleChange(newRole: Role) {
     setRole(newRole)
-    if (question.trim() && result) {
-      ask(question, newRole)
-    }
+    const lastQuestion = turns[turns.length - 1]?.question
+    if (lastQuestion) ask(lastQuestion, newRole)
   }
 
   return (
@@ -116,8 +126,8 @@ export function AskExperience({ brand }: { brand: BrandConfig }) {
             </span>
             <input
               type="text"
-              value={question}
-              onChange={(e) => setQuestion(e.target.value)}
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
               placeholder="Ask about a security vulnerability or affected product..."
               className="w-full rounded-2xl border border-gray-200 bg-white pl-11 pr-4 py-3.5 text-sm shadow-sm focus:outline-none focus:ring-2 transition-shadow"
               style={{ boxShadow: '0 1px 2px rgba(0,0,0,0.04)' }}
@@ -127,24 +137,21 @@ export function AskExperience({ brand }: { brand: BrandConfig }) {
           </div>
           <button
             type="submit"
-            disabled={loading || !question.trim()}
+            disabled={isBusy || !inputValue.trim()}
             className="px-6 py-3.5 rounded-2xl text-sm font-medium text-white disabled:opacity-40 shadow-sm hover:opacity-90 transition-opacity"
             style={{ backgroundColor: brand.accentColor }}
           >
-            {loading ? 'Asking…' : 'Ask'}
+            {isBusy ? 'Asking…' : 'Ask'}
           </button>
         </form>
 
-        {!result && !loading && (
+        {turns.length === 0 && (
           <div className="flex flex-wrap justify-center gap-2 mt-4">
             {EXAMPLE_QUESTIONS.map((q) => (
               <button
                 key={q}
                 type="button"
-                onClick={() => {
-                  setQuestion(q)
-                  ask(q, role)
-                }}
+                onClick={() => ask(q, role)}
                 className="text-xs px-3 py-1.5 rounded-full border border-gray-200 bg-white text-gray-500 hover:border-gray-300 hover:text-gray-700 transition-colors"
               >
                 {q}
@@ -153,24 +160,40 @@ export function AskExperience({ brand }: { brand: BrandConfig }) {
           </div>
         )}
 
-        {error && (
-          <div className="mt-6 rounded-xl border border-red-200 bg-red-50 text-red-700 text-sm p-4">{error}</div>
-        )}
+        <div className="mt-10 space-y-10">
+          {turns.map((turn, i) => {
+            const isLast = i === turns.length - 1
+            return (
+              <div key={turn.id} className={i > 0 ? 'pt-8 border-t border-gray-100' : ''}>
+                <div className="flex items-start justify-between gap-3 flex-wrap">
+                  <p className="text-base sm:text-lg font-medium text-gray-800">{turn.question}</p>
+                  <span className="text-[11px] text-gray-400 whitespace-nowrap mt-1.5">
+                    Asked as {ROLE_LABELS[turn.role]}
+                  </span>
+                </div>
 
-        {loading && <ThinkingIndicator color={brand.accentColor} />}
+                {turn.error && (
+                  <div className="mt-4 rounded-xl border border-red-200 bg-red-50 text-red-700 text-sm p-4">
+                    {turn.error}
+                  </div>
+                )}
 
-        {result && !loading && (
-          <AnswerPanel
-            result={result}
-            accentColor={brand.accentColor}
-            question={question}
-            fallbackSuggestions={EXAMPLE_QUESTIONS}
-            onAskFollowup={(q) => {
-              setQuestion(q)
-              ask(q, role)
-            }}
-          />
-        )}
+                {turn.loading && <ThinkingIndicator color={brand.accentColor} />}
+
+                {turn.result && (
+                  <AnswerPanel
+                    result={turn.result}
+                    accentColor={brand.accentColor}
+                    question={turn.question}
+                    fallbackSuggestions={EXAMPLE_QUESTIONS}
+                    onAskFollowup={(q) => ask(q, role)}
+                    showSuggestions={isLast}
+                  />
+                )}
+              </div>
+            )
+          })}
+        </div>
       </main>
 
       <Footer brand={brand} />
