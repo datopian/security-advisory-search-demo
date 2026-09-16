@@ -20,15 +20,15 @@ export default function DocumentView({ doc }: { doc: AdvisoryDoc }) {
       <Head>
         <title>{doc.id} — Threat Advisory Search</title>
       </Head>
-      <div className="min-h-screen bg-gray-50">
-        <div className="max-w-2xl mx-auto px-4 py-10">
-          <Link href="/" className="text-sm text-gray-500 hover:underline">
+      <div className="min-h-screen bg-[#fafafa]">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 py-10">
+          <Link href="/" className="text-sm text-gray-500 hover:text-gray-700 inline-flex items-center gap-1">
             ← Back to search
           </Link>
 
-          <div className="mt-4 flex items-center gap-2 flex-wrap">
-            <h1 className="text-2xl font-semibold text-gray-900">{doc.id}</h1>
-            <span className={`text-[10px] uppercase tracking-wide px-2 py-1 rounded-full ${TIER_BADGE[doc.tier]}`}>
+          <div className="mt-5 flex items-center gap-2 flex-wrap">
+            <h1 className="text-2xl font-semibold tracking-tight text-gray-900">{doc.id}</h1>
+            <span className={`text-[10px] font-medium uppercase tracking-wide px-2 py-1 rounded-full ${TIER_BADGE[doc.tier]}`}>
               {doc.tier}
             </span>
             <span className="text-xs text-gray-400">
@@ -38,15 +38,15 @@ export default function DocumentView({ doc }: { doc: AdvisoryDoc }) {
           <p className="text-sm text-gray-400 mt-1">Published {doc.date}</p>
 
           {question && (
-            <div className="mt-6 rounded-lg border border-indigo-100 bg-indigo-50 p-4">
+            <div className="mt-6 rounded-2xl border border-indigo-100 bg-indigo-50/70 p-4">
               <p className="text-xs uppercase tracking-wide text-indigo-500 mb-1">Relevant to: “{question}”</p>
               <p className="text-sm text-indigo-900">{doc.summary}</p>
             </div>
           )}
 
-          <div className="mt-6 rounded-lg border border-gray-200 bg-white p-5">
+          <div className="mt-6 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
             <p className="text-xs uppercase tracking-wide text-gray-400 mb-2">Full advisory text</p>
-            <p className="text-gray-800 leading-relaxed whitespace-pre-wrap">{doc.description}</p>
+            <p className="text-gray-800 leading-relaxed whitespace-pre-wrap text-[15px]">{doc.description}</p>
           </div>
 
           <div className="mt-6">
