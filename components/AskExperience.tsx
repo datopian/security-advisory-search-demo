@@ -3,6 +3,7 @@ import { BrandHeader } from './BrandHeader'
 import { Footer } from './Footer'
 import { RoleToggle } from './RoleToggle'
 import { AnswerPanel } from './AnswerPanel'
+import { CorpusBadge } from './CorpusBadge'
 import { BrandConfig } from '../lib/brands'
 import { AskResponse, Role } from '../lib/types'
 
@@ -88,24 +89,17 @@ export function AskExperience({ brand }: { brand: BrandConfig }) {
       <BrandHeader brand={brand} />
 
       <main className="flex-1 max-w-3xl mx-auto w-full px-4 sm:px-6 py-12">
-        <div className="text-center mb-8">
+        <div className="text-center mb-5">
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">
-            Ask a question about these advisories
+            Ask a question about recent CVE advisories
           </h2>
           <p className="text-gray-500 mt-2 text-sm sm:text-base">
             Plain English in, a synthesized and cited answer out — no keywords, no filters to figure out.
           </p>
         </div>
 
-        <div className="mb-8 rounded-2xl border border-gray-200 bg-white/70 p-4 text-sm text-gray-600 leading-relaxed">
-          <span className="font-medium text-gray-800">What this demo actually is: </span>
-          This searches 300 recent CVE vulnerability records from the public National Vulnerability
-          Database — a public stand-in corpus, so this can be a live demo without touching anyone&apos;s
-          real data. The real capability is pointing the same mechanism at your own internal reports
-          (threat intel, incident write-ups, whatever your team already has sitting in a folder nobody
-          can search) so people ask a plain-language question and get a cited answer, instead of knowing
-          which folder or keyword to try — with results automatically limited to what their role is
-          cleared to see.
+        <div className="mb-8 flex justify-center">
+          <CorpusBadge accentColor={brand.accentColor} />
         </div>
 
         <div className="mb-6 flex justify-center">
@@ -121,7 +115,7 @@ export function AskExperience({ brand }: { brand: BrandConfig }) {
               type="text"
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
-              placeholder="Ask a question about these advisories..."
+              placeholder="Ask about a CVE, vulnerability, or affected product..."
               className="w-full rounded-2xl border border-gray-200 bg-white pl-11 pr-4 py-3.5 text-sm shadow-sm focus:outline-none focus:ring-2 transition-shadow"
               style={{ boxShadow: '0 1px 2px rgba(0,0,0,0.04)' }}
               onFocus={(e) => (e.currentTarget.style.boxShadow = `0 0 0 3px ${brand.accentColor}22`)}
