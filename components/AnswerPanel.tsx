@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import ReactMarkdown from 'react-markdown'
 import { AskResponse } from '../lib/types'
 
 const TIER_BADGE: Record<string, string> = {
@@ -36,7 +37,9 @@ export function AnswerPanel({
             Synthesized answer
           </span>
         </div>
-        <p className="text-gray-900 leading-relaxed text-[15px]">{result.answer}</p>
+        <div className="prose prose-sm max-w-none text-gray-900 prose-p:leading-relaxed prose-p:my-2 first:prose-p:mt-0 last:prose-p:mb-0 prose-strong:text-gray-900 prose-strong:font-semibold prose-ul:my-2 prose-li:my-0.5 text-[15px]">
+          <ReactMarkdown>{result.answer}</ReactMarkdown>
+        </div>
       </div>
 
       <div className="flex items-center justify-between px-1 gap-3 flex-wrap">
