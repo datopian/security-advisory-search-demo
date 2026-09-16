@@ -43,7 +43,10 @@ export function RoleToggle({
   accentColor: string
 }) {
   return (
-    <div className="flex flex-col items-start sm:items-end gap-1.5">
+    <div className="flex flex-col items-center gap-1.5">
+      <div className="flex items-center gap-2 text-xs text-gray-400">
+        <span className="uppercase tracking-wide">Viewing as</span>
+      </div>
       <div className="flex items-center gap-1 rounded-full border border-gray-200 p-1 bg-white shadow-sm">
         {ROLES.map((r) => {
           const active = r === role
@@ -65,7 +68,7 @@ export function RoleToggle({
           )
         })}
       </div>
-      <p className="text-[11px] text-gray-400 max-w-[280px] text-left sm:text-right leading-snug">
+      <p className="text-[11px] text-gray-400 max-w-[420px] text-center leading-snug">
         Simulated for this demo — a real deployment ties roles to your SSO/identity provider and enforces this server-side.
       </p>
     </div>

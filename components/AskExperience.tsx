@@ -97,6 +97,10 @@ export function AskExperience({ brand }: { brand: BrandConfig }) {
           </p>
         </div>
 
+        <div className="mb-6 flex justify-center">
+          <RoleToggle role={role} onChange={handleRoleChange} accentColor={brand.accentColor} />
+        </div>
+
         <form onSubmit={handleSubmit} className="flex gap-2">
           <div className="flex-1 relative">
             <span className="absolute left-4 top-1/2 -translate-y-1/2">
@@ -123,28 +127,23 @@ export function AskExperience({ brand }: { brand: BrandConfig }) {
           </button>
         </form>
 
-        <div className="flex items-center justify-between mt-4 flex-wrap gap-3">
-          {!result && !loading ? (
-            <div className="flex flex-wrap gap-2">
-              {EXAMPLE_QUESTIONS.map((q) => (
-                <button
-                  key={q}
-                  type="button"
-                  onClick={() => {
-                    setQuestion(q)
-                    ask(q, role)
-                  }}
-                  className="text-xs px-3 py-1.5 rounded-full border border-gray-200 bg-white text-gray-500 hover:border-gray-300 hover:text-gray-700 transition-colors"
-                >
-                  {q}
-                </button>
-              ))}
-            </div>
-          ) : (
-            <div />
-          )}
-          <RoleToggle role={role} onChange={handleRoleChange} accentColor={brand.accentColor} />
-        </div>
+        {!result && !loading && (
+          <div className="flex flex-wrap justify-center gap-2 mt-4">
+            {EXAMPLE_QUESTIONS.map((q) => (
+              <button
+                key={q}
+                type="button"
+                onClick={() => {
+                  setQuestion(q)
+                  ask(q, role)
+                }}
+                className="text-xs px-3 py-1.5 rounded-full border border-gray-200 bg-white text-gray-500 hover:border-gray-300 hover:text-gray-700 transition-colors"
+              >
+                {q}
+              </button>
+            ))}
+          </div>
+        )}
 
         {error && (
           <div className="mt-6 rounded-xl border border-red-200 bg-red-50 text-red-700 text-sm p-4">{error}</div>
