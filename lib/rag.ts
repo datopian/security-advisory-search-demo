@@ -15,6 +15,15 @@ const VOYAGE_MODEL = 'voyage-4-lite'
 const ANTHROPIC_MODEL = process.env.ANTHROPIC_MODEL || 'claude-haiku-4-5-20251001'
 const CANDIDATE_POOL_SIZE = 15
 const CONTEXT_DOC_COUNT = 5
+// Cosine similarity floor below which a document doesn't count as "matching"
+// at all, regardless of tier. Calibrated empirically against this corpus'
+// voyage-4-lite embeddings: off-topic small talk ("How are you doing?")
+// scores ~0.14 on its best match, a generic-but-plausible security question
+// ("What is two-factor authentication?") scores ~0.36, and real on-corpus
+// questions score ~0.5+. Without this floor, cosine similarity always
+// returns *some* ranking — including 5 essentially-random "citations" for a
+// question that isn't about the corpus at all.
+const RELEVANCE_THRESHOLD = 0.3
 
 function cosineSim(a: number[], b: number[]): number {
   let dot = 0
@@ -62,6 +71,7 @@ function rankCorpus(queryVector: number[]): ScoredDoc[] {
     const score = vec ? cosineSim(queryVector, vec) : -1
     return { doc, score }
   })
+    .filter(({ score }) => score >= RELEVANCE_THRESHOLD)
     .sort((a, b) => b.score - a.score)
     .slice(0, CANDIDATE_POOL_SIZE)
 }
@@ -125,6 +135,16 @@ export async function answerQuestion(question: string, role: Role): Promise<AskR
   const totalMatching = ranked.length
   const visible = ranked.filter(({ doc }) => allowedTiers.includes(doc.tier))
   const visibleMatching = visible.length
+
+  if (totalMatching === 0) {
+    return {
+      answer:
+        "That doesn't look like something these advisories cover. Try asking about a CVE, a vulnerability, or an affected product — for example, \"which vulnerabilities affect remote access software this year?\"",
+      citations: [],
+      totalMatching,
+      visibleMatching,
+    }
+  }
 
   if (visible.length === 0) {
     return {
