@@ -30,7 +30,7 @@ export function CorpusBadge({ accentColor }: { accentColor: string }) {
         className="inline-flex items-center gap-1.5 rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs text-gray-500 hover:border-gray-300 hover:text-gray-700 transition-colors"
       >
         <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: accentColor }} />
-        300 NVD CVE advisories · public demo data
+        300 recent security vulnerability reports · public demo data
         <span style={{ color: accentColor }}>
           <InfoIcon />
         </span>

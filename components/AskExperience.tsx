@@ -11,6 +11,9 @@ const EXAMPLE_QUESTIONS = [
   'Which vulnerabilities affect remote access software this year?',
   'Are there any critical flaws in widely used content management systems?',
   'What advisories mention privilege escalation?',
+  'Are there any critical vulnerabilities in networking equipment like routers?',
+  'What flaws affect media or streaming server software?',
+  'Are there any SQL injection vulnerabilities reported?',
 ]
 
 function AskIcon() {
@@ -91,7 +94,7 @@ export function AskExperience({ brand }: { brand: BrandConfig }) {
       <main className="flex-1 max-w-3xl mx-auto w-full px-4 sm:px-6 py-12">
         <div className="text-center mb-5">
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">
-            Ask a question about recent CVE advisories
+            Ask a question about recent security advisories
           </h2>
           <p className="text-gray-500 mt-2 text-sm sm:text-base">
             Plain English in, a synthesized and cited answer out — no keywords, no filters to figure out.
@@ -115,7 +118,7 @@ export function AskExperience({ brand }: { brand: BrandConfig }) {
               type="text"
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
-              placeholder="Ask about a CVE, vulnerability, or affected product..."
+              placeholder="Ask about a security vulnerability or affected product..."
               className="w-full rounded-2xl border border-gray-200 bg-white pl-11 pr-4 py-3.5 text-sm shadow-sm focus:outline-none focus:ring-2 transition-shadow"
               style={{ boxShadow: '0 1px 2px rgba(0,0,0,0.04)' }}
               onFocus={(e) => (e.currentTarget.style.boxShadow = `0 0 0 3px ${brand.accentColor}22`)}
@@ -156,7 +159,18 @@ export function AskExperience({ brand }: { brand: BrandConfig }) {
 
         {loading && <ThinkingIndicator color={brand.accentColor} />}
 
-        {result && !loading && <AnswerPanel result={result} accentColor={brand.accentColor} question={question} />}
+        {result && !loading && (
+          <AnswerPanel
+            result={result}
+            accentColor={brand.accentColor}
+            question={question}
+            fallbackSuggestions={EXAMPLE_QUESTIONS}
+            onAskFollowup={(q) => {
+              setQuestion(q)
+              ask(q, role)
+            }}
+          />
+        )}
       </main>
 
       <Footer brand={brand} />

@@ -16,14 +16,50 @@ function SparkleIcon({ color }: { color: string }) {
   )
 }
 
+function SuggestionChips({
+  label,
+  questions,
+  accentColor,
+  onAsk,
+}: {
+  label: string
+  questions: string[]
+  accentColor: string
+  onAsk: (q: string) => void
+}) {
+  if (questions.length === 0) return null
+  return (
+    <div className="px-1">
+      <p className="text-xs uppercase tracking-wide text-gray-400 mb-2">{label}</p>
+      <div className="flex flex-wrap gap-2">
+        {questions.map((q) => (
+          <button
+            key={q}
+            type="button"
+            onClick={() => onAsk(q)}
+            className="text-xs px-3 py-1.5 rounded-full border transition-colors"
+            style={{ borderColor: accentColor + '40', color: accentColor }}
+          >
+            {q}
+          </button>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export function AnswerPanel({
   result,
   accentColor,
   question,
+  fallbackSuggestions,
+  onAskFollowup,
 }: {
   result: AskResponse
   accentColor: string
   question: string
+  fallbackSuggestions: string[]
+  onAskFollowup: (q: string) => void
 }) {
   return (
     <div className="mt-8 space-y-5 animate-fade-up">
@@ -80,6 +116,22 @@ export function AnswerPanel({
             ))}
           </ul>
         </div>
+      )}
+
+      {result.citations.length > 0 ? (
+        <SuggestionChips
+          label="Keep exploring"
+          questions={result.followups}
+          accentColor={accentColor}
+          onAsk={onAskFollowup}
+        />
+      ) : (
+        <SuggestionChips
+          label="Try asking instead"
+          questions={fallbackSuggestions}
+          accentColor={accentColor}
+          onAsk={onAskFollowup}
+        />
       )}
     </div>
   )

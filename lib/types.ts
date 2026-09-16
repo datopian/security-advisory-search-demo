@@ -39,5 +39,6 @@ export interface AskResponse {
   citations: Citation[]
   totalMatching: number
   visibleMatching: number
+  followups: string[]
   role: Role
 }

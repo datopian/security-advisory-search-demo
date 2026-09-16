@@ -76,7 +76,10 @@ function rankCorpus(queryVector: number[]): ScoredDoc[] {
     .slice(0, CANDIDATE_POOL_SIZE)
 }
 
-async function synthesizeAnswer(question: string, context: AdvisoryDoc[]): Promise<string> {
+async function synthesizeAnswer(
+  question: string,
+  context: AdvisoryDoc[]
+): Promise<{ answer: string; followups: string[] }> {
   const apiKey = process.env.ANTHROPIC_API_KEY
   if (!apiKey) throw new Error('ANTHROPIC_API_KEY is not configured on the server.')
 
@@ -94,6 +97,12 @@ Rules:
 - If the provided excerpts don't actually answer the question, say plainly that the permitted advisories don't cover it — do not guess or fall back on general knowledge.
 - Keep the answer concise: 2-5 sentences, plain language, no bullet-point dumps of every excerpt.
 - Never mention documents outside the provided excerpts.
+- After your answer, on its own final line, add exactly: FOLLOWUPS: <question 1> | <question 2>
+  Two short, natural follow-up questions (each under 12 words) a curious reader might ask next, in
+  plain everyday language (never use the words "CVE" or "NVD"). They should be answerable by this
+  same kind of advisory data in general, not necessarily by the documents you just cited. If you
+  can't think of two sensible ones, write FOLLOWUPS: NONE. This must be the very last line of your
+  output and must never appear anywhere else in your answer.
 
 Context excerpts:
 ${contextBlock}`
@@ -116,7 +125,24 @@ ${contextBlock}`
     throw new Error(`Anthropic request failed: ${res.status} ${res.statusText}`)
   }
   const json = await res.json()
-  return json.content?.[0]?.text?.trim() || ''
+  const raw = json.content?.[0]?.text?.trim() || ''
+  return extractFollowups(raw)
+}
+
+function extractFollowups(raw: string): { answer: string; followups: string[] } {
+  const match = raw.match(/\n?FOLLOWUPS:\s*(.*)$/is)
+  if (!match || match.index === undefined) return { answer: raw.trim(), followups: [] }
+
+  const answer = raw.slice(0, match.index).trim()
+  const rest = match[1].trim()
+  if (!rest || /^none\b/i.test(rest)) return { answer, followups: [] }
+
+  const followups = rest
+    .split('|')
+    .map((s) => s.trim())
+    .filter(Boolean)
+    .slice(0, 2)
+  return { answer, followups }
 }
 
 export interface AskResult {
@@ -124,6 +150,7 @@ export interface AskResult {
   citations: Citation[]
   totalMatching: number
   visibleMatching: number
+  followups: string[]
 }
 
 export async function answerQuestion(question: string, role: Role): Promise<AskResult> {
@@ -139,10 +166,11 @@ export async function answerQuestion(question: string, role: Role): Promise<AskR
   if (totalMatching === 0) {
     return {
       answer:
-        "That doesn't look like something these advisories cover. Try asking about a CVE, a vulnerability, or an affected product — for example, \"which vulnerabilities affect remote access software this year?\"",
+        "That doesn't look like something these advisories cover. Try asking about a security vulnerability or an affected product — for example, \"which vulnerabilities affect remote access software this year?\"",
       citations: [],
       totalMatching,
       visibleMatching,
+      followups: [],
     }
   }
 
@@ -153,11 +181,12 @@ export async function answerQuestion(question: string, role: Role): Promise<AskR
       citations: [],
       totalMatching,
       visibleMatching,
+      followups: [],
     }
   }
 
   const context = visible.slice(0, CONTEXT_DOC_COUNT).map((r) => r.doc)
-  const answer = await synthesizeAnswer(question, context)
+  const { answer, followups } = await synthesizeAnswer(question, context)
 
   const citations: Citation[] = context.map((d) => ({
     id: d.id,
@@ -167,5 +196,5 @@ export async function answerQuestion(question: string, role: Role): Promise<AskR
     tier: d.tier,
   }))
 
-  return { answer, citations, totalMatching, visibleMatching }
+  return { answer, citations, totalMatching, visibleMatching, followups }
 }
