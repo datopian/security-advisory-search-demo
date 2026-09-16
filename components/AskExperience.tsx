@@ -97,6 +97,17 @@ export function AskExperience({ brand }: { brand: BrandConfig }) {
           </p>
         </div>
 
+        <div className="mb-8 rounded-2xl border border-gray-200 bg-white/70 p-4 text-sm text-gray-600 leading-relaxed">
+          <span className="font-medium text-gray-800">What this demo actually is: </span>
+          This searches 300 recent CVE vulnerability records from the public National Vulnerability
+          Database — a public stand-in corpus, so this can be a live demo without touching anyone&apos;s
+          real data. The real capability is pointing the same mechanism at your own internal reports
+          (threat intel, incident write-ups, whatever your team already has sitting in a folder nobody
+          can search) so people ask a plain-language question and get a cited answer, instead of knowing
+          which folder or keyword to try — with results automatically limited to what their role is
+          cleared to see.
+        </div>
+
         <div className="mb-6 flex justify-center">
           <RoleToggle role={role} onChange={handleRoleChange} accentColor={brand.accentColor} />
         </div>
