@@ -23,6 +23,62 @@ interface Turn {
   loading: boolean
   error: string | null
   result: AskResponse | null
+  isExample?: boolean
+}
+
+// A real, previously-captured response (not fabricated) shown pre-loaded on
+// first visit, so a visitor sees a complete answer before typing anything.
+// Keeps the page's very first impression reliable and free (no live API
+// call) while still being genuine: every citation below links to the real
+// document.
+const SEED_TURN: Turn = {
+  id: -1,
+  question: 'Are there any critical flaws in widely used content management systems?',
+  role: 'public',
+  loading: false,
+  error: null,
+  isExample: true,
+  result: {
+    answer:
+      "Based on the provided advisories, there are several flaws in widely used CMS platforms:\n\n**ApostropheCMS** has a prototype pollution vulnerability (CVE-2026-71553) in version 4.32.0 and earlier that allows authenticated editors to cause a persistent denial of service by overwriting Object.prototype.toString.\n\n**Joomla** has two separate vulnerabilities: an unauthenticated remote code execution in the Sourcerer extension before 16.0.0 (CVE-2026-74253) through unverified user input, and a SQL injection flaw in Page Builder CK before 3.6.5 (CVE-2026-74254).\n\n**OutSystems Service Center** is vulnerable to DOM-based XSS attacks via malicious filenames in file uploads (CVE-2026-40126), fixed in version 11.41.2.\n\nHowever, the provided advisories don't specify severity levels for these issues, so I cannot confirm which are \"critical\" versus moderate.",
+    citations: [
+      {
+        id: 'CVE-2026-71553',
+        title: 'CVE-2026-71553: ApostropheCMS is an open-source Node.js content management system. In…',
+        date: '2026-08-17',
+        sourceUrl: 'https://nvd.nist.gov/vuln/detail/CVE-2026-71553',
+        tier: 'public',
+      },
+      {
+        id: 'CVE-2026-74253',
+        title: 'CVE-2026-74253: Joomla Extension - regularlabs.com - Unauthenticated RCE through…',
+        date: '2026-08-17',
+        sourceUrl: 'https://nvd.nist.gov/vuln/detail/CVE-2026-74253',
+        tier: 'public',
+      },
+      {
+        id: 'CVE-2026-40126',
+        title: 'CVE-2026-40126: OutSystems Service Center is vulnerable to a DOM-based Cross-Site…',
+        date: '2026-08-17',
+        sourceUrl: 'https://nvd.nist.gov/vuln/detail/CVE-2026-40126',
+        tier: 'public',
+      },
+      {
+        id: 'CVE-2026-74254',
+        title: 'CVE-2026-74254: Joomla Extension - joomlack.fr - SQL injection in Page Builder CK <…',
+        date: '2026-08-17',
+        sourceUrl: 'https://nvd.nist.gov/vuln/detail/CVE-2026-74254',
+        tier: 'public',
+      },
+    ],
+    totalMatching: 15,
+    visibleMatching: 4,
+    followups: [
+      'How do I update ApostropheCMS to fix the denial of service issue?',
+      'Which Joomla extension poses the biggest security risk?',
+    ],
+    role: 'public',
+  },
 }
 
 function AskIcon() {
@@ -46,7 +102,7 @@ function ThinkingIndicator({ color }: { color: string }) {
         <span className="thinking-dot h-2 w-2 rounded-full" style={{ backgroundColor: color }} />
         <span className="thinking-dot h-2 w-2 rounded-full" style={{ backgroundColor: color }} />
       </div>
-      Retrieving relevant advisories and drafting an answer…
+      Reading through the reports…
     </div>
   )
 }
@@ -54,10 +110,11 @@ function ThinkingIndicator({ color }: { color: string }) {
 export function AskExperience({ brand }: { brand: BrandConfig }) {
   const [inputValue, setInputValue] = useState('')
   const [role, setRole] = useState<Role>('public')
-  const [turns, setTurns] = useState<Turn[]>([])
+  const [turns, setTurns] = useState<Turn[]>([SEED_TURN])
   const nextId = useRef(0)
 
   const isBusy = turns.some((t) => t.loading)
+  const hasAskedOwnQuestion = turns.some((t) => !t.isExample)
 
   async function ask(question: string, r: Role) {
     if (!question.trim() || isBusy) return
@@ -107,7 +164,10 @@ export function AskExperience({ brand }: { brand: BrandConfig }) {
             Ask a question about recent security advisories
           </h2>
           <p className="text-gray-500 mt-2 text-sm sm:text-base">
-            Plain English in, a synthesized and cited answer out — no keywords, no filters to figure out.
+            Plain English in, a cited answer out — no keywords, no filters to figure out.
+          </p>
+          <p className="text-gray-400 mt-1 text-xs">
+            Every answer is checked against real documents — never invented.
           </p>
         </div>
 
@@ -145,7 +205,7 @@ export function AskExperience({ brand }: { brand: BrandConfig }) {
           </button>
         </form>
 
-        {turns.length === 0 && (
+        {!hasAskedOwnQuestion && (
           <div className="flex flex-wrap justify-center gap-2 mt-4">
             {EXAMPLE_QUESTIONS.map((q) => (
               <button
@@ -168,7 +228,8 @@ export function AskExperience({ brand }: { brand: BrandConfig }) {
                 <div className="flex items-start justify-between gap-3 flex-wrap">
                   <p className="text-base sm:text-lg font-medium text-gray-800">{turn.question}</p>
                   <span className="text-[11px] text-gray-400 whitespace-nowrap mt-1.5">
-                    Asked as {ROLE_LABELS[turn.role]}
+                    {turn.isExample ? 'Example · ' : 'Asked as '}
+                    {ROLE_LABELS[turn.role]}
                   </span>
                 </div>
 

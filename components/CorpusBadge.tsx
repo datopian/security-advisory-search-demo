@@ -38,6 +38,13 @@ export function CorpusBadge({ accentColor }: { accentColor: string }) {
 
       {open && (
         <div className="absolute z-20 top-full mt-2 left-1/2 -translate-x-1/2 w-80 max-w-[90vw] rounded-xl border border-gray-200 bg-white p-4 text-xs text-gray-600 leading-relaxed shadow-lg text-left animate-fade-up">
+          <div className="flex items-center justify-center gap-1.5 mb-3 text-[11px] font-medium text-gray-500">
+            <span className="px-2 py-1 rounded-full bg-gray-50 border border-gray-100">Your reports</span>
+            <span style={{ color: accentColor }}>→</span>
+            <span className="px-2 py-1 rounded-full bg-gray-50 border border-gray-100">This layer</span>
+            <span style={{ color: accentColor }}>→</span>
+            <span className="px-2 py-1 rounded-full bg-gray-50 border border-gray-100">Plain-English answers</span>
+          </div>
           <p className="font-medium text-gray-800 mb-1.5">What this demo actually is</p>
           <p>
             This searches 300 recent CVE vulnerability records from the public National Vulnerability

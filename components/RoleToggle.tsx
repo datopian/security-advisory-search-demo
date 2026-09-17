@@ -69,7 +69,8 @@ export function RoleToggle({
         })}
       </div>
       <p className="text-[11px] text-gray-400 max-w-[420px] text-center leading-snug">
-        Simulated for this demo — a real deployment ties roles to your SSO/identity provider and enforces this server-side.
+        Try another role — the answer above updates instantly. (Simulated for this demo; a real
+        deployment ties roles to your SSO/identity provider and enforces this server-side.)
       </p>
     </div>
   )

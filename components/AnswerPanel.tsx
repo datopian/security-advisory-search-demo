@@ -79,16 +79,16 @@ export function AnswerPanel({
   return (
     <div className="mt-8 space-y-4 animate-fade-up">
       <div
-        className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm relative overflow-hidden"
+        className="rounded-2xl border border-gray-200 bg-white p-7 shadow-sm relative overflow-hidden"
         style={{ borderLeftWidth: 3, borderLeftColor: accentColor }}
       >
-        <div className="flex items-center gap-2 mb-3">
+        <div className="flex items-center gap-2 mb-4">
           <SparkleIcon color={accentColor} />
           <span className="text-xs font-semibold uppercase tracking-wide" style={{ color: accentColor }}>
-            Synthesized answer
+            Answer
           </span>
         </div>
-        <div className="prose prose-sm max-w-none text-gray-900 prose-p:leading-relaxed prose-p:my-2 first:prose-p:mt-0 last:prose-p:mb-0 prose-strong:text-gray-900 prose-strong:font-semibold prose-ul:my-2 prose-li:my-0.5 text-[15px]">
+        <div className="prose max-w-none text-gray-800 prose-p:leading-7 prose-p:my-3 first:prose-p:mt-0 last:prose-p:mb-0 prose-strong:text-gray-900 prose-strong:font-semibold prose-ul:my-3 prose-li:my-1 text-base">
           <ReactMarkdown>{result.answer}</ReactMarkdown>
         </div>
       </div>
@@ -98,7 +98,7 @@ export function AnswerPanel({
           className="text-xs font-medium px-3 py-1 rounded-full"
           style={{ backgroundColor: accentColor + '14', color: accentColor }}
         >
-          {result.visibleMatching} of {result.totalMatching} matching documents visible at your access level
+          Filtered to what you're allowed to see: {result.visibleMatching} of {result.totalMatching} matches
         </span>
       </div>
 
