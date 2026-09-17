@@ -236,9 +236,8 @@ export function AskExperience({ brand, corpusStats }: { brand: BrandConfig; corp
                       key={q}
                       type="button"
                       onClick={() => ask(q, role)}
-                      className="text-sm px-3.5 py-2 rounded-lg bg-white border border-gray-200 text-gray-600 hover:-translate-y-px hover:shadow-sm transition-all text-left truncate"
+                      className="text-xs leading-snug px-3.5 py-2 rounded-lg bg-white border border-gray-200 text-gray-600 hover:-translate-y-px hover:shadow-sm transition-all text-left"
                       style={{ borderColor: brand.accentColor + '26' }}
-                      title={q}
                     >
                       {q}
                     </button>
