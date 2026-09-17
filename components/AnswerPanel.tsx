@@ -1,12 +1,21 @@
+import { useState } from 'react'
 import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
 import { AskResponse } from '../lib/types'
 
-const TIER_BADGE: Record<string, string> = {
-  public: 'bg-green-50 text-green-700 ring-1 ring-inset ring-green-200',
-  internal: 'bg-amber-50 text-amber-700 ring-1 ring-inset ring-amber-200',
-  restricted: 'bg-red-50 text-red-700 ring-1 ring-inset ring-red-200',
+const TIER_DOT: Record<string, string> = {
+  public: '#16a34a',
+  internal: '#d97706',
+  restricted: '#dc2626',
 }
+
+const TIER_BADGE: Record<string, string> = {
+  public: 'bg-green-50 text-green-700',
+  internal: 'bg-amber-50 text-amber-700',
+  restricted: 'bg-red-50 text-red-700',
+}
+
+const VISIBLE_BY_DEFAULT = 3
 
 function SparkleIcon({ color }: { color: string }) {
   return (
@@ -63,8 +72,12 @@ export function AnswerPanel({
   onAskFollowup: (q: string) => void
   showSuggestions?: boolean
 }) {
+  const [expanded, setExpanded] = useState(false)
+  const hiddenCount = result.citations.length - VISIBLE_BY_DEFAULT
+  const visibleCitations = expanded ? result.citations : result.citations.slice(0, VISIBLE_BY_DEFAULT)
+
   return (
-    <div className="mt-8 space-y-5 animate-fade-up">
+    <div className="mt-8 space-y-4 animate-fade-up">
       <div
         className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm relative overflow-hidden"
         style={{ borderLeftWidth: 3, borderLeftColor: accentColor }}
@@ -91,32 +104,41 @@ export function AnswerPanel({
 
       {result.citations.length > 0 && (
         <div>
-          <p className="text-xs uppercase tracking-wide text-gray-400 mb-2 px-1">Sources</p>
-          <ul className="grid gap-2">
-            {result.citations.map((c) => (
+          <p className="text-[11px] uppercase tracking-wide text-gray-400 mb-1 px-1">Sources</p>
+          <ul>
+            {visibleCitations.map((c) => (
               <li key={c.id}>
                 <Link
                   href={`/documents/${c.id}?q=${encodeURIComponent(question)}`}
-                  className="flex items-start justify-between gap-3 rounded-xl border border-gray-100 bg-white p-3.5 hover:shadow-md hover:border-gray-200 transition-all group"
+                  className="flex items-center gap-2 py-1.5 px-2 rounded-lg hover:bg-gray-50 transition-colors group"
                 >
-                  <div className="min-w-0">
-                    <p
-                      className="text-sm font-medium truncate group-hover:underline"
-                      style={{ color: accentColor }}
-                    >
-                      {c.title}
-                    </p>
-                    <p className="text-xs text-gray-400 mt-0.5">{c.date}</p>
-                  </div>
+                  <span className="h-1.5 w-1.5 rounded-full shrink-0" style={{ backgroundColor: TIER_DOT[c.tier] }} />
                   <span
-                    className={`text-[10px] font-medium uppercase tracking-wide px-2 py-1 rounded-full whitespace-nowrap ${TIER_BADGE[c.tier]}`}
+                    className="text-sm truncate group-hover:underline flex-1 min-w-0"
+                    style={{ color: accentColor }}
+                  >
+                    {c.title}
+                  </span>
+                  <span
+                    className={`text-[9px] font-medium uppercase tracking-wide px-1.5 py-0.5 rounded-full whitespace-nowrap shrink-0 ${TIER_BADGE[c.tier]}`}
                   >
                     {c.tier}
                   </span>
+                  <span className="text-xs text-gray-400 whitespace-nowrap shrink-0">{c.date}</span>
                 </Link>
               </li>
             ))}
           </ul>
+          {hiddenCount > 0 && !expanded && (
+            <button
+              type="button"
+              onClick={() => setExpanded(true)}
+              className="text-xs px-2 py-1 mt-0.5 font-medium hover:underline"
+              style={{ color: accentColor }}
+            >
+              + {hiddenCount} more source{hiddenCount > 1 ? 's' : ''}
+            </button>
+          )}
         </div>
       )}
 
