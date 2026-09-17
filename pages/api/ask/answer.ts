@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { answerForContext } from '../../../lib/rag'
 import { AnswerResponse, Role } from '../../../lib/types'
+import { getCorpus, isCorpusId } from '../../../lib/corpora'
 import { clientIp } from '../../../lib/rateLimit'
 
 const VALID_ROLES: Role[] = ['public', 'analyst', 'admin']
@@ -26,13 +27,16 @@ export default async function handler(
   }
 
   const ip = clientIp(req)
-  const { question, role, contextDocIds } = req.body || {}
+  const { question, role, contextDocIds, corpusId } = req.body || {}
 
   if (typeof question !== 'string' || question.trim().length === 0) {
     return res.status(400).json({ error: 'A non-empty "question" string is required.' })
   }
   if (!VALID_ROLES.includes(role)) {
     return res.status(400).json({ error: `"role" must be one of: ${VALID_ROLES.join(', ')}` })
+  }
+  if (!isCorpusId(corpusId)) {
+    return res.status(400).json({ error: '"corpusId" must be a known corpus.' })
   }
   if (!Array.isArray(contextDocIds) || contextDocIds.length === 0 || contextDocIds.length > MAX_CONTEXT_IDS) {
     return res.status(400).json({ error: '"contextDocIds" must be a non-empty array.' })
@@ -43,20 +47,21 @@ export default async function handler(
 
   const startedAt = Date.now()
   try {
-    const result = await answerForContext(question.trim(), role as Role, contextDocIds)
+    const result = await answerForContext(corpusId, question.trim(), role as Role, contextDocIds)
     if (!result) {
       // Every id got filtered out on re-check (tampered role/ids, or a
       // race with the corpus changing) — same message a normal
       // role-restricted retrieve() would have returned.
+      const corpus = getCorpus(corpusId)
       return res.status(200).json({
-        answer:
-          'None of the advisories that match this question are visible at your current access level. Switch roles, or ask about a topic covered by public advisories.',
+        answer: `None of the ${corpus.docNounPlural} that match this question are visible at your current access level. Switch roles, or ask about a topic covered by public ${corpus.docNounPlural}.`,
         followups: [],
       })
     }
     log('ask_answer_ok', {
       ip,
       role,
+      corpusId,
       questionLength: question.length,
       contextDocCount: contextDocIds.length,
       durationMs: Date.now() - startedAt,
@@ -67,6 +72,7 @@ export default async function handler(
     log('ask_answer_error', {
       ip,
       role,
+      corpusId,
       questionLength: question.length,
       error: message,
       durationMs: Date.now() - startedAt,

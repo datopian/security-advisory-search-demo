@@ -1,15 +1,16 @@
 // Ingests recent CVE records from the NIST NVD CVE 2.0 API (no API key
 // required at this volume), tags each with a deterministic access tier
-// from its CVSS score, and writes data/corpus.json + data/datapackage.json.
+// from its CVSS score, and writes data/security/corpus.json +
+// data/security/datapackage.json.
 //
-// Usage: npm run ingest
+// Usage: npm run ingest:security
 
 import { writeFile, mkdir } from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const DATA_DIR = path.join(__dirname, '..', 'data')
+const DATA_DIR = path.join(__dirname, '..', 'data', 'security')
 
 const TARGET_MIN_DOCS = 150
 const TARGET_MAX_DOCS = 300
@@ -94,6 +95,7 @@ async function main() {
     if (!description) continue
     const { score, severity } = extractCvss(cve)
     const id = cve.id
+    const meta = severity && severity !== 'UNKNOWN' ? `${severity}${score ? ` · CVSS ${score}` : ''}` : 'Unscored'
     docs.push({
       id,
       title: `${id}: ${summarize(description, 70)}`,
@@ -101,9 +103,8 @@ async function main() {
       description,
       date: (cve.published || '').split('T')[0],
       sourceUrl: `https://nvd.nist.gov/vuln/detail/${id}`,
-      cvss: score,
-      severity,
       tier: tierFor(score),
+      meta,
     })
     if (docs.length >= TARGET_MAX_DOCS) break
   }
@@ -140,9 +141,8 @@ async function main() {
             { name: 'description', type: 'string', description: 'Full NVD English-language description' },
             { name: 'date', type: 'date', description: 'Publication date' },
             { name: 'sourceUrl', type: 'string', description: 'Canonical NVD detail page' },
-            { name: 'cvss', type: 'number', description: 'CVSS base score (null if unscored)' },
-            { name: 'severity', type: 'string' },
             { name: 'tier', type: 'string', description: 'Simulated access tier: public | internal | restricted' },
+            { name: 'meta', type: 'string', description: 'Severity + CVSS score label shown on the document page' },
           ],
         },
       },
@@ -152,8 +152,8 @@ async function main() {
 
   console.log(`\nIngested ${docs.length} documents.`)
   console.log('Tier distribution:', tierCounts)
-  console.log('Wrote data/corpus.json and data/datapackage.json')
-  console.log('\nNext: set VOYAGE_API_KEY in .env.local and run `npm run embed`.')
+  console.log('Wrote data/security/corpus.json and data/security/datapackage.json')
+  console.log('\nNext: set VOYAGE_API_KEY in .env.local and run `npm run embed:security`.')
 }
 
 main().catch((err) => {

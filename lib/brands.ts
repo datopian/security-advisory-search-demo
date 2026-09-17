@@ -1,26 +1,50 @@
 import brandConfigData from '../brand-config.json'
+import { CorpusId, isCorpusId } from './corpora'
 
 export interface BrandConfig {
   displayName: string
+  corpusId: CorpusId
   accentColor: string
   tagline?: string
   logoUrl?: string | null
 }
 
-export const DEFAULT_BRAND: BrandConfig = {
-  displayName: '',
-  accentColor: '#4f46e5',
-  tagline: 'Ask a plain-language question, get a cited answer.',
-  logoUrl: null,
+interface BrandConfigEntry {
+  displayName: string
+  corpusId: CorpusId
+  accentColor: string
+  tagline?: string
+  logoUrl?: string | null
 }
 
-const BRANDS = brandConfigData as Record<string, BrandConfig>
+const BRANDS = brandConfigData as Record<string, BrandConfigEntry>
 
-// Unrecognized or missing brand keys always fall back to the neutral default.
-export function getBrand(brand: string | undefined | null): BrandConfig {
-  if (!brand) return DEFAULT_BRAND
-  const entry = BRANDS[brand.toLowerCase()]
-  return entry ? { ...DEFAULT_BRAND, ...entry } : DEFAULT_BRAND
+const NEUTRAL_TAGLINE = 'Ask a plain-language question, get a cited answer.'
+const NEUTRAL_ACCENT = '#4f46e5'
+
+export function getDefaultBrand(corpusId: CorpusId): BrandConfig {
+  return {
+    displayName: '',
+    corpusId,
+    accentColor: NEUTRAL_ACCENT,
+    tagline: NEUTRAL_TAGLINE,
+    logoUrl: null,
+  }
+}
+
+// Resolves a /demo/<slug> path to a brand + corpus:
+// - slug is a corpus id ("security"/"governance") -> that corpus's neutral default
+// - slug matches a brand-config entry -> that entry's skin + its corpusId
+// - anything else (unrecognized, missing) -> the security corpus's neutral
+//   default, per spec: an unrecognized brand can't guess which corpus was
+//   intended, so it falls back to the same corpus as the bare root domain.
+export function resolveBrand(slug: string | undefined | null): BrandConfig {
+  if (!slug) return getDefaultBrand('security')
+  const lower = slug.toLowerCase()
+  if (isCorpusId(lower)) return getDefaultBrand(lower)
+  const entry = BRANDS[lower]
+  if (entry) return { ...getDefaultBrand(entry.corpusId), ...entry }
+  return getDefaultBrand('security')
 }
 
 export function listBrandSlugs(): string[] {

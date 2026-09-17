@@ -6,8 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "ingest": "node scripts/ingest.mjs",
-    "embed": "node --env-file=.env.local scripts/embed.mjs"
+    "ingest:security": "node scripts/ingest-security.mjs",
+    "ingest:governance": "node scripts/ingest-governance.mjs",
+    "embed:security": "node --env-file=.env.local scripts/embed.mjs security",
+    "embed:governance": "node --env-file=.env.local scripts/embed.mjs governance"
   },
   "dependencies": {
     "next": "^14.2.35",

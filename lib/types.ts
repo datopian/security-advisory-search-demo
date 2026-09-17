@@ -14,16 +14,34 @@ export const TIER_ALLOWED_FOR_ROLE: Record<Role, Tier[]> = {
   admin: ['public', 'internal', 'restricted'],
 }
 
-export interface AdvisoryDoc {
+// Per-tier document counts for a corpus — safe, aggregate-only metadata (no
+// titles/text), so it can be computed at build time and passed straight to
+// the client to make the "searching N documents" line react to the role
+// toggle instead of showing one fixed total regardless of role.
+export interface CorpusStats {
+  total: number
+  public: number
+  internal: number
+  restricted: number
+}
+
+export function visibleCountForRole(stats: CorpusStats, role: Role): number {
+  return TIER_ALLOWED_FOR_ROLE[role].reduce((sum, tier) => sum + stats[tier], 0)
+}
+
+// A single ingested document, shared shape across every corpus. `meta` is a
+// short, corpus-specific label shown next to the tier badge on the document
+// page (e.g. "HIGH · CVSS 8.1" for security, "Guidance" for governance) —
+// optional and free-form so a new corpus never needs a schema change here.
+export interface CorpusDoc {
   id: string
   title: string
   summary: string
   description: string
   date: string
   sourceUrl: string
-  cvss: number | null
-  severity: string
   tier: Tier
+  meta?: string
 }
 
 export interface Citation {

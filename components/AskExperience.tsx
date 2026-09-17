@@ -5,16 +5,8 @@ import { RoleToggle } from './RoleToggle'
 import { AnswerPanel } from './AnswerPanel'
 import { CorpusBadge } from './CorpusBadge'
 import { BrandConfig } from '../lib/brands'
-import { Citation, ROLE_LABELS, Role } from '../lib/types'
-
-const EXAMPLE_QUESTIONS = [
-  'Which vulnerabilities affect remote access software this year?',
-  'Are there any critical flaws in widely used content management systems?',
-  'What advisories mention privilege escalation?',
-  'Are there any critical vulnerabilities in networking equipment like routers?',
-  'What flaws affect media or streaming server software?',
-  'Are there any SQL injection vulnerabilities reported?',
-]
+import { getCorpus } from '../lib/corpora'
+import { Citation, CorpusStats, ROLE_LABELS, Role, visibleCountForRole } from '../lib/types'
 
 const ROLE_HINT_AUTO_DISMISS_MS = 6000
 
@@ -35,7 +27,7 @@ interface Turn {
 
 function AskIcon() {
   return (
-    <svg viewBox="0 0 20 20" fill="none" className="h-4 w-4 text-gray-400">
+    <svg viewBox="0 0 20 20" fill="none" className="h-4 w-4 text-gray-400 shrink-0">
       <path
         d="M17 10.5c0 3.6-3.1 6.5-7 6.5-1 0-1.9-.16-2.75-.46L3 18l1.1-3.3C3.4 13.5 3 12.05 3 10.5 3 6.9 6.1 4 10 4s7 2.9 7 6.5Z"
         stroke="currentColor"
@@ -46,20 +38,21 @@ function AskIcon() {
   )
 }
 
-function SearchingIndicator({ color }: { color: string }) {
+function SearchingIndicator({ color, count }: { color: string; count: number }) {
   return (
     <div className="mt-5 flex items-center gap-3 text-sm text-gray-500">
-      <div className="flex gap-1">
+      <div className="flex gap-1 shrink-0">
         <span className="thinking-dot h-2 w-2 rounded-full" style={{ backgroundColor: color }} />
         <span className="thinking-dot h-2 w-2 rounded-full" style={{ backgroundColor: color }} />
         <span className="thinking-dot h-2 w-2 rounded-full" style={{ backgroundColor: color }} />
       </div>
-      Searching 300 recent advisories…
+      <span>Searching {count} documents…</span>
     </div>
   )
 }
 
-export function AskExperience({ brand }: { brand: BrandConfig }) {
+export function AskExperience({ brand, corpusStats }: { brand: BrandConfig; corpusStats: CorpusStats }) {
+  const corpus = getCorpus(brand.corpusId)
   const [inputValue, setInputValue] = useState('')
   const [role, setRole] = useState<Role>('public')
   const [turns, setTurns] = useState<Turn[]>([])
@@ -100,7 +93,7 @@ export function AskExperience({ brand }: { brand: BrandConfig }) {
       const retrieveRes = await fetch('/api/ask/retrieve', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ question, role: r }),
+        body: JSON.stringify({ question, role: r, corpusId: brand.corpusId }),
       })
       const retrieveData = await retrieveRes.json()
       if (!retrieveRes.ok) throw new Error(retrieveData.error || 'Request failed')
@@ -127,7 +120,12 @@ export function AskExperience({ brand }: { brand: BrandConfig }) {
       const answerRes = await fetch('/api/ask/answer', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ question, role: r, contextDocIds: retrieveData.contextDocIds }),
+        body: JSON.stringify({
+          question,
+          role: r,
+          corpusId: brand.corpusId,
+          contextDocIds: retrieveData.contextDocIds,
+        }),
       })
       const answerData = await answerRes.json()
       if (!answerRes.ok) throw new Error(answerData.error || 'Request failed')
@@ -172,7 +170,7 @@ export function AskExperience({ brand }: { brand: BrandConfig }) {
     >
       <BrandHeader
         brand={brand}
-        subtitle={<CorpusBadge accentColor={brand.accentColor} />}
+        subtitle={<CorpusBadge accentColor={brand.accentColor} corpus={corpus} stats={corpusStats} role={role} />}
         right={
           <RoleToggle
             role={role}
@@ -186,9 +184,8 @@ export function AskExperience({ brand }: { brand: BrandConfig }) {
 
       <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-10 py-10 sm:py-14">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="font-light tracking-tight leading-[1.15] text-gray-900 text-[36px] sm:text-5xl">
-            Ask a question about recent security{' '}
-            <span style={{ color: brand.accentColor }}>advisories</span>
+          <h2 className="font-light tracking-tight leading-[1.15] text-gray-900 text-[32px] sm:text-5xl">
+            {corpus.heroPrefix} <span style={{ color: brand.accentColor }}>{corpus.heroHighlight}</span>
           </h2>
           <p
             className="mt-3 mx-auto"
@@ -203,7 +200,7 @@ export function AskExperience({ brand }: { brand: BrandConfig }) {
             Plain English in, a cited answer out — no keywords, no filters to figure out.
           </p>
 
-          <form onSubmit={handleSubmit} className="flex gap-2 mt-7">
+          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2 mt-7">
             <div className="flex-1 relative">
               <span className="absolute left-4 top-1/2 -translate-y-1/2">
                 <AskIcon />
@@ -212,7 +209,7 @@ export function AskExperience({ brand }: { brand: BrandConfig }) {
                 type="text"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                placeholder="Ask about a security vulnerability or affected product..."
+                placeholder={corpus.placeholder}
                 className="w-full rounded-2xl border border-gray-200 bg-white pl-11 pr-4 py-4 text-[15px] focus:outline-none transition-shadow"
                 style={{ boxShadow: '0 1px 2px rgba(0,0,0,0.04)' }}
                 onFocus={(e) => (e.currentTarget.style.boxShadow = `0 0 0 3px ${brand.accentColor}22`)}
@@ -222,7 +219,7 @@ export function AskExperience({ brand }: { brand: BrandConfig }) {
             <button
               type="submit"
               disabled={isBusy || !inputValue.trim()}
-              className="px-7 py-4 rounded-2xl text-sm font-medium text-white disabled:opacity-40 shadow-sm hover:opacity-90 transition-opacity"
+              className="px-7 py-4 rounded-2xl text-sm font-medium text-white disabled:opacity-40 shadow-sm hover:opacity-90 transition-opacity shrink-0"
               style={{ backgroundColor: brand.accentColor }}
             >
               {isBusy ? 'Asking…' : 'Ask'}
@@ -234,7 +231,7 @@ export function AskExperience({ brand }: { brand: BrandConfig }) {
               <div className="w-full max-w-2xl">
                 <p className="text-xs uppercase tracking-wide text-gray-400 mb-3">Try one of these</p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                  {EXAMPLE_QUESTIONS.map((q) => (
+                  {corpus.exampleQuestions.map((q) => (
                     <button
                       key={q}
                       type="button"
@@ -261,7 +258,7 @@ export function AskExperience({ brand }: { brand: BrandConfig }) {
             return (
               <div key={turn.id} className={i > 0 ? 'pt-10 border-t border-gray-200/70' : ''}>
                 <div className="flex items-start justify-between gap-3 flex-wrap">
-                  <p className="text-lg sm:text-xl font-medium text-gray-900">{turn.question}</p>
+                  <p className="text-lg sm:text-xl font-medium text-gray-900 break-words">{turn.question}</p>
                   <span
                     className="text-[11px] font-medium px-2.5 py-1 rounded-full whitespace-nowrap"
                     style={{ backgroundColor: brand.accentColor + '0f', color: brand.accentColor }}
@@ -276,7 +273,9 @@ export function AskExperience({ brand }: { brand: BrandConfig }) {
                   </div>
                 )}
 
-                {turn.status === 'searching' && <SearchingIndicator color={brand.accentColor} />}
+                {turn.status === 'searching' && (
+                  <SearchingIndicator color={brand.accentColor} count={visibleCountForRole(corpusStats, turn.role)} />
+                )}
 
                 {(turn.status === 'answering' || turn.status === 'done') && (
                   <AnswerPanel
@@ -288,7 +287,7 @@ export function AskExperience({ brand }: { brand: BrandConfig }) {
                     totalMatching={turn.totalMatching}
                     visibleMatching={turn.visibleMatching}
                     followups={turn.followups}
-                    fallbackSuggestions={EXAMPLE_QUESTIONS}
+                    fallbackSuggestions={corpus.exampleQuestions}
                     onAskFollowup={(q) => ask(q, role)}
                     showSuggestions={isLast && turn.status === 'done'}
                     animate={isLast}

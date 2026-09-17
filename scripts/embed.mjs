@@ -1,16 +1,24 @@
-// Computes one embedding per document in data/corpus.json via the Voyage AI
-// embeddings API and writes the flat vector index to data/embeddings.json.
-// This runs once at ingestion time; the app does in-process cosine similarity
-// against this file at query time (no vector database).
+// Computes one embedding per document in data/<corpus>/corpus.json via the
+// Voyage AI embeddings API and writes the flat vector index to
+// data/<corpus>/embeddings.json. This runs once at ingestion time; the app
+// does in-process cosine similarity against this file at query time (no
+// vector database).
 //
-// Usage: npm run embed   (reads VOYAGE_API_KEY from .env.local)
+// Usage: npm run embed:security | npm run embed:governance
+//        node --env-file=.env.local scripts/embed.mjs <corpus-id>
 
 import { readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const DATA_DIR = path.join(__dirname, '..', 'data')
+
+const corpusId = process.argv[2]
+if (!corpusId) {
+  console.error('Usage: node scripts/embed.mjs <corpus-id>  (e.g. security, governance)')
+  process.exit(1)
+}
+const DATA_DIR = path.join(__dirname, '..', 'data', corpusId)
 
 const MODEL = 'voyage-4-lite'
 // Voyage throttles accounts with no payment method on file to 3 requests/min
@@ -86,7 +94,7 @@ async function main() {
   }
 
   await writeFile(path.join(DATA_DIR, 'embeddings.json'), JSON.stringify(entries))
-  console.log(`Wrote data/embeddings.json (${entries.length} vectors, dim=${entries[0]?.vector.length})`)
+  console.log(`Wrote data/${corpusId}/embeddings.json (${entries.length} vectors, dim=${entries[0]?.vector.length})`)
 }
 
 main().catch((err) => {

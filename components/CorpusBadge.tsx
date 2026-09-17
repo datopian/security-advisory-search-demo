@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
+import { CorpusStats, Role, visibleCountForRole } from '../lib/types'
+import { CorpusDefinition } from '../lib/corpora'
 
 function InfoIcon() {
   return (
@@ -10,9 +12,20 @@ function InfoIcon() {
   )
 }
 
-export function CorpusBadge({ accentColor }: { accentColor: string }) {
+export function CorpusBadge({
+  accentColor,
+  corpus,
+  stats,
+  role,
+}: {
+  accentColor: string
+  corpus: CorpusDefinition
+  stats: CorpusStats
+  role: Role
+}) {
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
+  const visible = visibleCountForRole(stats, role)
 
   useEffect(() => {
     function onClickOutside(e: MouseEvent) {
@@ -25,7 +38,10 @@ export function CorpusBadge({ accentColor }: { accentColor: string }) {
   return (
     <div ref={ref} className="relative inline-flex items-center gap-1.5 text-xs text-gray-400">
       <span className="h-1.5 w-1.5 rounded-full shrink-0" style={{ backgroundColor: accentColor }} />
-      <span>Searching 300 recent security vulnerability reports · public demo data</span>
+      <span>
+        Searching {visible} of {stats.total} {corpus.docNounPlural}
+        <span className="hidden sm:inline"> · public demo data</span>
+      </span>
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
@@ -46,14 +62,13 @@ export function CorpusBadge({ accentColor }: { accentColor: string }) {
           </div>
           <p className="font-medium text-gray-800 mb-1.5">What this demo actually is</p>
           <p>
-            This searches 300 recent CVE vulnerability records from the public National Vulnerability
-            Database — a public stand-in corpus, so this can be a live demo without touching anyone&apos;s
-            real data.
+            This searches {stats.total} {corpus.docNounPlural} from {corpus.sourceName} — a public
+            stand-in corpus, so this can be a live demo without touching anyone&apos;s real data.
           </p>
           <p className="mt-2">
-            The real capability is pointing the same mechanism at your own internal reports (threat
-            intel, incident write-ups, whatever your team already has sitting in a folder nobody can
-            search), with results automatically limited to what each person&apos;s role is cleared to see.
+            The real capability is pointing the same mechanism at your own internal reports, with
+            results automatically limited to what each person&apos;s role is cleared to see — the
+            count above updates with the role toggle for exactly that reason.
           </p>
         </div>
       )}

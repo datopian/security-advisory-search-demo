@@ -1,8 +1,51 @@
 {
   "bmw": {
     "displayName": "BMW",
+    "corpusId": "security",
     "accentColor": "#0066B1",
     "tagline": "See how your analysts would ask, not search.",
+    "logoUrl": null
+  },
+  "npi": {
+    "displayName": "NPI",
+    "corpusId": "security",
+    "accentColor": "#1d4ed8",
+    "tagline": "Ask a question, get a cited answer — not a folder to browse.",
+    "logoUrl": null
+  },
+  "clayops": {
+    "displayName": "ClayOPS",
+    "corpusId": "governance",
+    "accentColor": "#0f766e",
+    "tagline": "The same discovery layer, over your own governance library.",
+    "logoUrl": null
+  },
+  "zicon": {
+    "displayName": "ZiCON",
+    "corpusId": "governance",
+    "accentColor": "#7c3aed",
+    "tagline": "Plain-language search across internal guidance, cited every time.",
+    "logoUrl": null
+  },
+  "aiimi": {
+    "displayName": "Aiimi",
+    "corpusId": "governance",
+    "accentColor": "#b91c1c",
+    "tagline": "A lighter discovery layer over documents you already have.",
+    "logoUrl": null
+  },
+  "transitions-dd": {
+    "displayName": "Transitions DD",
+    "corpusId": "governance",
+    "accentColor": "#c2410c",
+    "tagline": "Ask a question, get a cited answer — not a folder to browse.",
+    "logoUrl": null
+  },
+  "smartterm": {
+    "displayName": "SmartTerm",
+    "corpusId": "governance",
+    "accentColor": "#0369a1",
+    "tagline": "Ask a question, get a cited answer — not a folder to browse.",
     "logoUrl": null
   }
 }

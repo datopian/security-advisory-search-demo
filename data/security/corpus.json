@@ -8,7 +8,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2024-13784",
     "cvss": 9.8,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.8"
   },
   {
     "id": "CVE-2026-74578",
@@ -19,7 +20,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74578",
     "cvss": 7.1,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.1"
   },
   {
     "id": "CVE-2026-74251",
@@ -30,7 +32,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74251",
     "cvss": null,
     "severity": "UNKNOWN",
-    "tier": "public"
+    "tier": "public",
+    "meta": "Unscored"
   },
   {
     "id": "CVE-2024-58375",
@@ -41,7 +44,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2024-58375",
     "cvss": 7.5,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.5"
   },
   {
     "id": "CVE-2026-19349",
@@ -52,7 +56,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19349",
     "cvss": 9.8,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.8"
   },
   {
     "id": "CVE-2026-72887",
@@ -63,7 +68,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-72887",
     "cvss": 9.8,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.8"
   },
   {
     "id": "CVE-2026-72888",
@@ -74,7 +80,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-72888",
     "cvss": 6.5,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.5"
   },
   {
     "id": "CVE-2026-73056",
@@ -85,7 +92,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-73056",
     "cvss": 9.8,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.8"
   },
   {
     "id": "CVE-2026-73057",
@@ -96,7 +104,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-73057",
     "cvss": 7.5,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.5"
   },
   {
     "id": "CVE-2026-73058",
@@ -107,7 +116,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-73058",
     "cvss": 5.8,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 5.8"
   },
   {
     "id": "CVE-2026-73059",
@@ -118,7 +128,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-73059",
     "cvss": 6.5,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.5"
   },
   {
     "id": "CVE-2026-73060",
@@ -129,7 +140,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-73060",
     "cvss": 7.5,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.5"
   },
   {
     "id": "CVE-2026-73061",
@@ -140,7 +152,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-73061",
     "cvss": 9.8,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.8"
   },
   {
     "id": "CVE-2026-73062",
@@ -151,7 +164,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-73062",
     "cvss": 7.5,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.5"
   },
   {
     "id": "CVE-2026-74783",
@@ -162,7 +176,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74783",
     "cvss": 7.5,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.5"
   },
   {
     "id": "CVE-2026-74784",
@@ -173,7 +188,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74784",
     "cvss": null,
     "severity": "UNKNOWN",
-    "tier": "public"
+    "tier": "public",
+    "meta": "Unscored"
   },
   {
     "id": "CVE-2026-74785",
@@ -184,7 +200,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74785",
     "cvss": 6.5,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.5"
   },
   {
     "id": "CVE-2026-74786",
@@ -195,7 +212,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74786",
     "cvss": 6.5,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.5"
   },
   {
     "id": "CVE-2026-74787",
@@ -206,7 +224,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74787",
     "cvss": 7.5,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.5"
   },
   {
     "id": "CVE-2026-74788",
@@ -217,7 +236,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74788",
     "cvss": 7.5,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.5"
   },
   {
     "id": "CVE-2026-74789",
@@ -228,7 +248,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74789",
     "cvss": 7.5,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.5"
   },
   {
     "id": "CVE-2026-74790",
@@ -239,7 +260,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74790",
     "cvss": 9.1,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.1"
   },
   {
     "id": "CVE-2026-74791",
@@ -250,7 +272,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74791",
     "cvss": 8.6,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 8.6"
   },
   {
     "id": "CVE-2026-74792",
@@ -261,7 +284,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74792",
     "cvss": 7.5,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.5"
   },
   {
     "id": "CVE-2026-74794",
@@ -272,7 +296,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74794",
     "cvss": 7.5,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.5"
   },
   {
     "id": "CVE-2026-74795",
@@ -283,7 +308,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74795",
     "cvss": 7.5,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.5"
   },
   {
     "id": "CVE-2026-74796",
@@ -294,7 +320,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74796",
     "cvss": 6.1,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.1"
   },
   {
     "id": "CVE-2026-74797",
@@ -305,7 +332,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74797",
     "cvss": 3.1,
     "severity": "LOW",
-    "tier": "public"
+    "tier": "public",
+    "meta": "LOW · CVSS 3.1"
   },
   {
     "id": "CVE-2026-19955",
@@ -316,7 +344,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19955",
     "cvss": 3.5,
     "severity": "LOW",
-    "tier": "public"
+    "tier": "public",
+    "meta": "LOW · CVSS 3.5"
   },
   {
     "id": "CVE-2026-19956",
@@ -327,7 +356,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19956",
     "cvss": 6.3,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.3"
   },
   {
     "id": "CVE-2026-19957",
@@ -338,7 +368,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19957",
     "cvss": 6.3,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.3"
   },
   {
     "id": "CVE-2026-19958",
@@ -349,7 +380,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19958",
     "cvss": 6.3,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.3"
   },
   {
     "id": "CVE-2026-19959",
@@ -360,7 +392,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19959",
     "cvss": 9.9,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.9"
   },
   {
     "id": "CVE-2026-19960",
@@ -371,7 +404,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19960",
     "cvss": 7.4,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.4"
   },
   {
     "id": "CVE-2026-19961",
@@ -382,7 +416,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19961",
     "cvss": 9.9,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.9"
   },
   {
     "id": "CVE-2026-19962",
@@ -393,7 +428,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19962",
     "cvss": 7.4,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.4"
   },
   {
     "id": "CVE-2026-19963",
@@ -404,7 +440,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19963",
     "cvss": 7.4,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.4"
   },
   {
     "id": "CVE-2026-19964",
@@ -415,7 +452,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19964",
     "cvss": 5.5,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 5.5"
   },
   {
     "id": "CVE-2026-19965",
@@ -426,7 +464,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19965",
     "cvss": 3.7,
     "severity": "LOW",
-    "tier": "public"
+    "tier": "public",
+    "meta": "LOW · CVSS 3.7"
   },
   {
     "id": "CVE-2026-19966",
@@ -437,7 +476,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19966",
     "cvss": 5.4,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 5.4"
   },
   {
     "id": "CVE-2026-19967",
@@ -448,7 +488,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19967",
     "cvss": 6.3,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.3"
   },
   {
     "id": "CVE-2026-19968",
@@ -459,7 +500,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19968",
     "cvss": 4.3,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 4.3"
   },
   {
     "id": "CVE-2026-19969",
@@ -470,7 +512,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19969",
     "cvss": 5.4,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 5.4"
   },
   {
     "id": "CVE-2026-19970",
@@ -481,7 +524,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19970",
     "cvss": 6.3,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.3"
   },
   {
     "id": "CVE-2026-19971",
@@ -492,7 +536,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19971",
     "cvss": 4.7,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 4.7"
   },
   {
     "id": "CVE-2026-19972",
@@ -503,7 +548,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19972",
     "cvss": 6.3,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.3"
   },
   {
     "id": "CVE-2026-19973",
@@ -514,7 +560,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19973",
     "cvss": 6.3,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.3"
   },
   {
     "id": "CVE-2026-19974",
@@ -525,7 +572,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19974",
     "cvss": 5.6,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 5.6"
   },
   {
     "id": "CVE-2026-19975",
@@ -536,7 +584,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19975",
     "cvss": 3.1,
     "severity": "LOW",
-    "tier": "public"
+    "tier": "public",
+    "meta": "LOW · CVSS 3.1"
   },
   {
     "id": "CVE-2026-19976",
@@ -547,7 +596,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19976",
     "cvss": 6.6,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.6"
   },
   {
     "id": "CVE-2026-19977",
@@ -558,7 +608,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19977",
     "cvss": 10,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 10"
   },
   {
     "id": "CVE-2026-50601",
@@ -569,7 +620,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-50601",
     "cvss": null,
     "severity": "UNKNOWN",
-    "tier": "public"
+    "tier": "public",
+    "meta": "Unscored"
   },
   {
     "id": "CVE-2026-50602",
@@ -580,7 +632,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-50602",
     "cvss": null,
     "severity": "UNKNOWN",
-    "tier": "public"
+    "tier": "public",
+    "meta": "Unscored"
   },
   {
     "id": "CVE-2026-19978",
@@ -591,7 +644,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19978",
     "cvss": 5.3,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 5.3"
   },
   {
     "id": "CVE-2026-19979",
@@ -602,7 +656,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19979",
     "cvss": 8.3,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 8.3"
   },
   {
     "id": "CVE-2026-19980",
@@ -613,7 +668,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19980",
     "cvss": 7.4,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.4"
   },
   {
     "id": "CVE-2026-19981",
@@ -624,7 +680,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19981",
     "cvss": 7.4,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.4"
   },
   {
     "id": "CVE-2026-19982",
@@ -635,7 +692,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19982",
     "cvss": 7.4,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.4"
   },
   {
     "id": "CVE-2026-19983",
@@ -646,7 +704,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19983",
     "cvss": 8.3,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 8.3"
   },
   {
     "id": "CVE-2026-19984",
@@ -657,7 +716,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19984",
     "cvss": 6.3,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.3"
   },
   {
     "id": "CVE-2026-19986",
@@ -668,7 +728,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19986",
     "cvss": 5.4,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 5.4"
   },
   {
     "id": "CVE-2026-13700",
@@ -679,7 +740,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-13700",
     "cvss": 5.9,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 5.9"
   },
   {
     "id": "CVE-2026-14832",
@@ -690,7 +752,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-14832",
     "cvss": 5.3,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 5.3"
   },
   {
     "id": "CVE-2026-19987",
@@ -701,7 +764,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19987",
     "cvss": 5.3,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 5.3"
   },
   {
     "id": "CVE-2026-19988",
@@ -712,7 +776,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19988",
     "cvss": 4.3,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 4.3"
   },
   {
     "id": "CVE-2026-19992",
@@ -723,7 +788,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19992",
     "cvss": 3.1,
     "severity": "LOW",
-    "tier": "public"
+    "tier": "public",
+    "meta": "LOW · CVSS 3.1"
   },
   {
     "id": "CVE-2026-19993",
@@ -734,7 +800,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19993",
     "cvss": 4.3,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 4.3"
   },
   {
     "id": "CVE-2026-74579",
@@ -745,7 +812,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74579",
     "cvss": 7.1,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.1"
   },
   {
     "id": "CVE-2026-15623",
@@ -756,7 +824,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-15623",
     "cvss": null,
     "severity": "UNKNOWN",
-    "tier": "public"
+    "tier": "public",
+    "meta": "Unscored"
   },
   {
     "id": "CVE-2026-19994",
@@ -767,7 +836,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19994",
     "cvss": 6.3,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.3"
   },
   {
     "id": "CVE-2026-19995",
@@ -778,7 +848,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19995",
     "cvss": 3.5,
     "severity": "LOW",
-    "tier": "public"
+    "tier": "public",
+    "meta": "LOW · CVSS 3.5"
   },
   {
     "id": "CVE-2026-19996",
@@ -789,7 +860,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19996",
     "cvss": 4.3,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 4.3"
   },
   {
     "id": "CVE-2026-19997",
@@ -800,7 +872,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19997",
     "cvss": 4.7,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 4.7"
   },
   {
     "id": "CVE-2026-22072",
@@ -811,7 +884,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-22072",
     "cvss": null,
     "severity": "UNKNOWN",
-    "tier": "public"
+    "tier": "public",
+    "meta": "Unscored"
   },
   {
     "id": "CVE-2026-19998",
@@ -822,7 +896,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19998",
     "cvss": 4.3,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 4.3"
   },
   {
     "id": "CVE-2026-19999",
@@ -833,7 +908,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19999",
     "cvss": 6.3,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.3"
   },
   {
     "id": "CVE-2026-20000",
@@ -844,7 +920,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-20000",
     "cvss": 6.3,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.3"
   },
   {
     "id": "CVE-2026-49301",
@@ -855,7 +932,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-49301",
     "cvss": 6.2,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.2"
   },
   {
     "id": "CVE-2026-49302",
@@ -866,7 +944,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-49302",
     "cvss": 6.2,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.2"
   },
   {
     "id": "CVE-2026-49303",
@@ -877,7 +956,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-49303",
     "cvss": 5.1,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 5.1"
   },
   {
     "id": "CVE-2026-49304",
@@ -888,7 +968,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-49304",
     "cvss": 6.2,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.2"
   },
   {
     "id": "CVE-2026-49305",
@@ -899,7 +980,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-49305",
     "cvss": 6.2,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.2"
   },
   {
     "id": "CVE-2026-49306",
@@ -910,7 +992,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-49306",
     "cvss": 3.3,
     "severity": "LOW",
-    "tier": "public"
+    "tier": "public",
+    "meta": "LOW · CVSS 3.3"
   },
   {
     "id": "CVE-2026-49307",
@@ -921,7 +1004,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-49307",
     "cvss": 6.2,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.2"
   },
   {
     "id": "CVE-2026-49308",
@@ -932,7 +1016,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-49308",
     "cvss": 5.5,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 5.5"
   },
   {
     "id": "CVE-2026-58560",
@@ -943,7 +1028,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-58560",
     "cvss": 4,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 4"
   },
   {
     "id": "CVE-2026-58561",
@@ -954,7 +1040,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-58561",
     "cvss": 4,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 4"
   },
   {
     "id": "CVE-2026-74845",
@@ -965,7 +1052,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74845",
     "cvss": 8.8,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 8.8"
   },
   {
     "id": "CVE-2026-74798",
@@ -976,7 +1064,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74798",
     "cvss": 8.7,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 8.7"
   },
   {
     "id": "CVE-2026-74799",
@@ -987,7 +1076,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74799",
     "cvss": 9.3,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.3"
   },
   {
     "id": "CVE-2026-74800",
@@ -998,7 +1088,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74800",
     "cvss": 9,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9"
   },
   {
     "id": "CVE-2026-74801",
@@ -1009,7 +1100,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74801",
     "cvss": 8.2,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 8.2"
   },
   {
     "id": "CVE-2026-74802",
@@ -1020,7 +1112,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74802",
     "cvss": 8.2,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 8.2"
   },
   {
     "id": "CVE-2026-74842",
@@ -1031,7 +1124,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74842",
     "cvss": 6.3,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.3"
   },
   {
     "id": "CVE-2026-74867",
@@ -1042,7 +1136,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74867",
     "cvss": 4.2,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 4.2"
   },
   {
     "id": "CVE-2026-74868",
@@ -1053,7 +1148,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74868",
     "cvss": 7.5,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.5"
   },
   {
     "id": "CVE-2026-74869",
@@ -1064,7 +1160,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74869",
     "cvss": 7.7,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.7"
   },
   {
     "id": "CVE-2026-74870",
@@ -1075,7 +1172,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74870",
     "cvss": 3.3,
     "severity": "LOW",
-    "tier": "public"
+    "tier": "public",
+    "meta": "LOW · CVSS 3.3"
   },
   {
     "id": "CVE-2026-74871",
@@ -1086,7 +1184,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74871",
     "cvss": 5.5,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 5.5"
   },
   {
     "id": "CVE-2026-74872",
@@ -1097,7 +1196,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74872",
     "cvss": 9.8,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.8"
   },
   {
     "id": "CVE-2026-74873",
@@ -1108,7 +1208,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74873",
     "cvss": 5.5,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 5.5"
   },
   {
     "id": "CVE-2026-74874",
@@ -1119,7 +1220,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74874",
     "cvss": 7.5,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.5"
   },
   {
     "id": "CVE-2026-74875",
@@ -1130,7 +1232,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74875",
     "cvss": 9.8,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.8"
   },
   {
     "id": "CVE-2026-74876",
@@ -1141,7 +1244,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74876",
     "cvss": 9.8,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.8"
   },
   {
     "id": "CVE-2026-74877",
@@ -1152,7 +1256,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74877",
     "cvss": 8.8,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 8.8"
   },
   {
     "id": "CVE-2026-74878",
@@ -1163,7 +1268,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74878",
     "cvss": 9.8,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.8"
   },
   {
     "id": "CVE-2026-74879",
@@ -1174,7 +1280,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74879",
     "cvss": 7.5,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.5"
   },
   {
     "id": "CVE-2026-74880",
@@ -1185,7 +1292,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74880",
     "cvss": 9.8,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.8"
   },
   {
     "id": "CVE-2026-74881",
@@ -1196,7 +1304,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74881",
     "cvss": 9.3,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.3"
   },
   {
     "id": "CVE-2026-74882",
@@ -1207,7 +1316,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74882",
     "cvss": 9.1,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.1"
   },
   {
     "id": "CVE-2026-74883",
@@ -1218,7 +1328,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74883",
     "cvss": 8.8,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 8.8"
   },
   {
     "id": "CVE-2026-74884",
@@ -1229,7 +1340,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74884",
     "cvss": 7.5,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.5"
   },
   {
     "id": "CVE-2026-74885",
@@ -1240,7 +1352,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74885",
     "cvss": 3.6,
     "severity": "LOW",
-    "tier": "public"
+    "tier": "public",
+    "meta": "LOW · CVSS 3.6"
   },
   {
     "id": "CVE-2026-74886",
@@ -1251,7 +1364,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74886",
     "cvss": 9.8,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.8"
   },
   {
     "id": "CVE-2026-74887",
@@ -1262,7 +1376,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74887",
     "cvss": 5.9,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 5.9"
   },
   {
     "id": "CVE-2026-74888",
@@ -1273,7 +1388,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74888",
     "cvss": 7.5,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.5"
   },
   {
     "id": "CVE-2026-74889",
@@ -1284,7 +1400,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74889",
     "cvss": 9.8,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.8"
   },
   {
     "id": "CVE-2026-74890",
@@ -1295,7 +1412,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74890",
     "cvss": 5.5,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 5.5"
   },
   {
     "id": "CVE-2026-74891",
@@ -1306,7 +1424,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74891",
     "cvss": 9.8,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.8"
   },
   {
     "id": "CVE-2026-74892",
@@ -1317,7 +1436,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74892",
     "cvss": 7.5,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.5"
   },
   {
     "id": "CVE-2026-74893",
@@ -1328,7 +1448,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74893",
     "cvss": 8.8,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 8.8"
   },
   {
     "id": "CVE-2026-74894",
@@ -1339,7 +1460,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74894",
     "cvss": 9.8,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.8"
   },
   {
     "id": "CVE-2026-74895",
@@ -1350,7 +1472,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74895",
     "cvss": 9.8,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.8"
   },
   {
     "id": "CVE-2026-74896",
@@ -1361,7 +1484,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74896",
     "cvss": 9.8,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.8"
   },
   {
     "id": "CVE-2026-74899",
@@ -1372,7 +1496,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74899",
     "cvss": 9.8,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.8"
   },
   {
     "id": "CVE-2026-74900",
@@ -1383,7 +1508,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74900",
     "cvss": 9.8,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.8"
   },
   {
     "id": "CVE-2026-74901",
@@ -1394,7 +1520,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74901",
     "cvss": 9.8,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.8"
   },
   {
     "id": "CVE-2026-40126",
@@ -1405,7 +1532,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-40126",
     "cvss": null,
     "severity": "UNKNOWN",
-    "tier": "public"
+    "tier": "public",
+    "meta": "Unscored"
   },
   {
     "id": "CVE-2026-74843",
@@ -1416,7 +1544,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74843",
     "cvss": 10,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 10"
   },
   {
     "id": "CVE-2026-14564",
@@ -1427,7 +1556,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-14564",
     "cvss": 9,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9"
   },
   {
     "id": "CVE-2026-16467",
@@ -1438,7 +1568,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-16467",
     "cvss": 7.5,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.5"
   },
   {
     "id": "CVE-2026-18674",
@@ -1449,7 +1580,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-18674",
     "cvss": null,
     "severity": "UNKNOWN",
-    "tier": "public"
+    "tier": "public",
+    "meta": "Unscored"
   },
   {
     "id": "CVE-2026-70412",
@@ -1460,7 +1592,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-70412",
     "cvss": 3.5,
     "severity": "LOW",
-    "tier": "public"
+    "tier": "public",
+    "meta": "LOW · CVSS 3.5"
   },
   {
     "id": "CVE-2026-74997",
@@ -1471,7 +1604,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74997",
     "cvss": 8.8,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 8.8"
   },
   {
     "id": "CVE-2026-74998",
@@ -1482,7 +1616,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74998",
     "cvss": 7.2,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.2"
   },
   {
     "id": "CVE-2026-74999",
@@ -1493,7 +1628,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74999",
     "cvss": 5.4,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 5.4"
   },
   {
     "id": "CVE-2026-75000",
@@ -1504,7 +1640,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-75000",
     "cvss": 5.8,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 5.8"
   },
   {
     "id": "CVE-2026-75002",
@@ -1515,7 +1652,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-75002",
     "cvss": 7.1,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.1"
   },
   {
     "id": "CVE-2026-75003",
@@ -1526,7 +1664,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-75003",
     "cvss": 9.8,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.8"
   },
   {
     "id": "CVE-2026-75004",
@@ -1537,7 +1676,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-75004",
     "cvss": 4.3,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 4.3"
   },
   {
     "id": "CVE-2026-75006",
@@ -1548,7 +1688,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-75006",
     "cvss": 5.8,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 5.8"
   },
   {
     "id": "CVE-2026-75007",
@@ -1559,7 +1700,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-75007",
     "cvss": 8.8,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 8.8"
   },
   {
     "id": "CVE-2026-75010",
@@ -1570,7 +1712,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-75010",
     "cvss": 4.3,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 4.3"
   },
   {
     "id": "CVE-2026-15218",
@@ -1581,7 +1724,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-15218",
     "cvss": 7.9,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.9"
   },
   {
     "id": "CVE-2026-16137",
@@ -1592,7 +1736,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-16137",
     "cvss": 7.2,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.2"
   },
   {
     "id": "CVE-2026-16138",
@@ -1603,7 +1748,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-16138",
     "cvss": 8,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 8"
   },
   {
     "id": "CVE-2026-16139",
@@ -1614,7 +1760,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-16139",
     "cvss": 7.2,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.2"
   },
   {
     "id": "CVE-2026-16471",
@@ -1625,7 +1772,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-16471",
     "cvss": 7.5,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.5"
   },
   {
     "id": "CVE-2026-19693",
@@ -1636,7 +1784,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19693",
     "cvss": 8.1,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 8.1"
   },
   {
     "id": "CVE-2026-56089",
@@ -1647,7 +1796,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-56089",
     "cvss": 3.3,
     "severity": "LOW",
-    "tier": "public"
+    "tier": "public",
+    "meta": "LOW · CVSS 3.3"
   },
   {
     "id": "CVE-2026-56090",
@@ -1658,7 +1808,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-56090",
     "cvss": 7.3,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.3"
   },
   {
     "id": "CVE-2026-56685",
@@ -1669,7 +1820,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-56685",
     "cvss": 7.3,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.3"
   },
   {
     "id": "CVE-2026-56686",
@@ -1680,7 +1832,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-56686",
     "cvss": 7.8,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.8"
   },
   {
     "id": "CVE-2026-59909",
@@ -1691,7 +1844,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-59909",
     "cvss": 7.1,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.1"
   },
   {
     "id": "CVE-2026-59910",
@@ -1702,7 +1856,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-59910",
     "cvss": 7.8,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.8"
   },
   {
     "id": "CVE-2026-59911",
@@ -1713,7 +1868,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-59911",
     "cvss": 5.5,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 5.5"
   },
   {
     "id": "CVE-2026-10527",
@@ -1724,7 +1880,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-10527",
     "cvss": 6.3,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.3"
   },
   {
     "id": "CVE-2026-13202",
@@ -1735,7 +1892,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-13202",
     "cvss": null,
     "severity": "UNKNOWN",
-    "tier": "public"
+    "tier": "public",
+    "meta": "Unscored"
   },
   {
     "id": "CVE-2026-15754",
@@ -1746,7 +1904,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-15754",
     "cvss": 4.2,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 4.2"
   },
   {
     "id": "CVE-2026-16044",
@@ -1757,7 +1916,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-16044",
     "cvss": 5.4,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 5.4"
   },
   {
     "id": "CVE-2026-16045",
@@ -1768,7 +1928,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-16045",
     "cvss": 4.3,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 4.3"
   },
   {
     "id": "CVE-2026-16046",
@@ -1779,7 +1940,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-16046",
     "cvss": 4.3,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 4.3"
   },
   {
     "id": "CVE-2026-16047",
@@ -1790,7 +1952,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-16047",
     "cvss": 4.3,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 4.3"
   },
   {
     "id": "CVE-2026-16048",
@@ -1801,7 +1964,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-16048",
     "cvss": 6.3,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.3"
   },
   {
     "id": "CVE-2026-16049",
@@ -1812,7 +1976,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-16049",
     "cvss": 4.3,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 4.3"
   },
   {
     "id": "CVE-2026-71566",
@@ -1823,7 +1988,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-71566",
     "cvss": 9.3,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.3"
   },
   {
     "id": "CVE-2026-71567",
@@ -1834,7 +2000,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-71567",
     "cvss": 7.7,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.7"
   },
   {
     "id": "CVE-2026-73851",
@@ -1845,7 +2012,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-73851",
     "cvss": null,
     "severity": "UNKNOWN",
-    "tier": "public"
+    "tier": "public",
+    "meta": "Unscored"
   },
   {
     "id": "CVE-2025-27621",
@@ -1856,7 +2024,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-27621",
     "cvss": null,
     "severity": "UNKNOWN",
-    "tier": "public"
+    "tier": "public",
+    "meta": "Unscored"
   },
   {
     "id": "CVE-2025-27770",
@@ -1867,7 +2036,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-27770",
     "cvss": null,
     "severity": "UNKNOWN",
-    "tier": "public"
+    "tier": "public",
+    "meta": "Unscored"
   },
   {
     "id": "CVE-2025-27771",
@@ -1878,7 +2048,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-27771",
     "cvss": null,
     "severity": "UNKNOWN",
-    "tier": "public"
+    "tier": "public",
+    "meta": "Unscored"
   },
   {
     "id": "CVE-2025-27772",
@@ -1889,7 +2060,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-27772",
     "cvss": null,
     "severity": "UNKNOWN",
-    "tier": "public"
+    "tier": "public",
+    "meta": "Unscored"
   },
   {
     "id": "CVE-2026-40144",
@@ -1900,7 +2072,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-40144",
     "cvss": null,
     "severity": "UNKNOWN",
-    "tier": "public"
+    "tier": "public",
+    "meta": "Unscored"
   },
   {
     "id": "CVE-2026-53960",
@@ -1911,7 +2084,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-53960",
     "cvss": 5.3,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 5.3"
   },
   {
     "id": "CVE-2026-55674",
@@ -1922,7 +2096,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-55674",
     "cvss": 9.3,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.3"
   },
   {
     "id": "CVE-2026-55704",
@@ -1933,7 +2108,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-55704",
     "cvss": 4.3,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 4.3"
   },
   {
     "id": "CVE-2026-59829",
@@ -1944,7 +2120,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-59829",
     "cvss": 4.3,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 4.3"
   },
   {
     "id": "CVE-2026-64859",
@@ -1955,7 +2132,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-64859",
     "cvss": 9.1,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.1"
   },
   {
     "id": "CVE-2026-64865",
@@ -1966,7 +2144,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-64865",
     "cvss": null,
     "severity": "UNKNOWN",
-    "tier": "public"
+    "tier": "public",
+    "meta": "Unscored"
   },
   {
     "id": "CVE-2026-64866",
@@ -1977,7 +2156,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-64866",
     "cvss": null,
     "severity": "UNKNOWN",
-    "tier": "public"
+    "tier": "public",
+    "meta": "Unscored"
   },
   {
     "id": "CVE-2026-64868",
@@ -1988,7 +2168,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-64868",
     "cvss": 7.5,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.5"
   },
   {
     "id": "CVE-2026-68762",
@@ -1999,7 +2180,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-68762",
     "cvss": 5.9,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 5.9"
   },
   {
     "id": "CVE-2026-71479",
@@ -2010,7 +2192,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-71479",
     "cvss": 9.1,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.1"
   },
   {
     "id": "CVE-2026-73646",
@@ -2021,7 +2204,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-73646",
     "cvss": 7.5,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.5"
   },
   {
     "id": "CVE-2026-74858",
@@ -2032,7 +2216,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74858",
     "cvss": 6.3,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.3"
   },
   {
     "id": "CVE-2026-75044",
@@ -2043,7 +2228,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-75044",
     "cvss": 8.1,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 8.1"
   },
   {
     "id": "CVE-2026-75045",
@@ -2054,7 +2240,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-75045",
     "cvss": 9.1,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.1"
   },
   {
     "id": "CVE-2026-75046",
@@ -2065,7 +2252,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-75046",
     "cvss": 4.3,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 4.3"
   },
   {
     "id": "CVE-2026-75047",
@@ -2076,7 +2264,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-75047",
     "cvss": 6.5,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.5"
   },
   {
     "id": "CVE-2026-75048",
@@ -2087,7 +2276,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-75048",
     "cvss": 8.2,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 8.2"
   },
   {
     "id": "CVE-2026-75049",
@@ -2098,7 +2288,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-75049",
     "cvss": 6.5,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.5"
   },
   {
     "id": "CVE-2026-75050",
@@ -2109,7 +2300,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-75050",
     "cvss": 7.1,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.1"
   },
   {
     "id": "CVE-2026-75051",
@@ -2120,7 +2312,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-75051",
     "cvss": 8.1,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 8.1"
   },
   {
     "id": "CVE-2026-75052",
@@ -2131,7 +2324,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-75052",
     "cvss": 4.4,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 4.4"
   },
   {
     "id": "CVE-2026-75053",
@@ -2142,7 +2336,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-75053",
     "cvss": 5.4,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 5.4"
   },
   {
     "id": "CVE-2026-75054",
@@ -2153,7 +2348,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-75054",
     "cvss": 6.3,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.3"
   },
   {
     "id": "CVE-2026-75055",
@@ -2164,7 +2360,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-75055",
     "cvss": 5.5,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 5.5"
   },
   {
     "id": "CVE-2026-75056",
@@ -2175,7 +2372,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-75056",
     "cvss": 7.8,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.8"
   },
   {
     "id": "CVE-2026-75057",
@@ -2186,7 +2384,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-75057",
     "cvss": 6.2,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.2"
   },
   {
     "id": "CVE-2026-75058",
@@ -2197,7 +2396,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-75058",
     "cvss": 5.5,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 5.5"
   },
   {
     "id": "CVE-2026-75059",
@@ -2208,7 +2408,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-75059",
     "cvss": 4.4,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 4.4"
   },
   {
     "id": "CVE-2026-75060",
@@ -2219,7 +2420,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-75060",
     "cvss": 8.4,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 8.4"
   },
   {
     "id": "CVE-2026-12519",
@@ -2230,7 +2432,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-12519",
     "cvss": 5,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 5"
   },
   {
     "id": "CVE-2026-12629",
@@ -2241,7 +2444,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-12629",
     "cvss": 4.6,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 4.6"
   },
   {
     "id": "CVE-2026-12630",
@@ -2252,7 +2456,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-12630",
     "cvss": 4.3,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 4.3"
   },
   {
     "id": "CVE-2026-40145",
@@ -2263,7 +2468,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-40145",
     "cvss": null,
     "severity": "UNKNOWN",
-    "tier": "public"
+    "tier": "public",
+    "meta": "Unscored"
   },
   {
     "id": "CVE-2026-61666",
@@ -2274,7 +2480,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-61666",
     "cvss": null,
     "severity": "UNKNOWN",
-    "tier": "public"
+    "tier": "public",
+    "meta": "Unscored"
   },
   {
     "id": "CVE-2026-68517",
@@ -2285,7 +2492,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-68517",
     "cvss": 6.5,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.5"
   },
   {
     "id": "CVE-2026-68518",
@@ -2296,7 +2504,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-68518",
     "cvss": null,
     "severity": "UNKNOWN",
-    "tier": "public"
+    "tier": "public",
+    "meta": "Unscored"
   },
   {
     "id": "CVE-2026-9771",
@@ -2307,7 +2516,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-9771",
     "cvss": 8.8,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 8.8"
   },
   {
     "id": "CVE-2026-33437",
@@ -2318,7 +2528,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-33437",
     "cvss": 8.1,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 8.1"
   },
   {
     "id": "CVE-2026-46345",
@@ -2329,7 +2540,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-46345",
     "cvss": 8.4,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 8.4"
   },
   {
     "id": "CVE-2026-48053",
@@ -2340,7 +2552,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-48053",
     "cvss": 5.8,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 5.8"
   },
   {
     "id": "CVE-2026-50768",
@@ -2351,7 +2564,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-50768",
     "cvss": 8.8,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 8.8"
   },
   {
     "id": "CVE-2026-50769",
@@ -2362,7 +2576,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-50769",
     "cvss": 9.8,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.8"
   },
   {
     "id": "CVE-2026-50770",
@@ -2373,7 +2588,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-50770",
     "cvss": 9.8,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.8"
   },
   {
     "id": "CVE-2026-50771",
@@ -2384,7 +2600,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-50771",
     "cvss": 6.1,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.1"
   },
   {
     "id": "CVE-2026-50772",
@@ -2395,7 +2612,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-50772",
     "cvss": 9.8,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.8"
   },
   {
     "id": "CVE-2026-51346",
@@ -2406,7 +2624,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-51346",
     "cvss": 9.1,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.1"
   },
   {
     "id": "CVE-2026-54284",
@@ -2417,7 +2636,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-54284",
     "cvss": null,
     "severity": "UNKNOWN",
-    "tier": "public"
+    "tier": "public",
+    "meta": "Unscored"
   },
   {
     "id": "CVE-2026-59893",
@@ -2428,7 +2648,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-59893",
     "cvss": 7.5,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.5"
   },
   {
     "id": "CVE-2026-59894",
@@ -2439,7 +2660,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-59894",
     "cvss": null,
     "severity": "UNKNOWN",
-    "tier": "public"
+    "tier": "public",
+    "meta": "Unscored"
   },
   {
     "id": "CVE-2026-59902",
@@ -2450,7 +2672,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-59902",
     "cvss": 7.5,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.5"
   },
   {
     "id": "CVE-2026-59903",
@@ -2461,7 +2684,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-59903",
     "cvss": 6.5,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.5"
   },
   {
     "id": "CVE-2026-62982",
@@ -2472,7 +2696,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-62982",
     "cvss": 8.8,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 8.8"
   },
   {
     "id": "CVE-2026-68519",
@@ -2483,7 +2708,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-68519",
     "cvss": null,
     "severity": "UNKNOWN",
-    "tier": "public"
+    "tier": "public",
+    "meta": "Unscored"
   },
   {
     "id": "CVE-2026-68520",
@@ -2494,7 +2720,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-68520",
     "cvss": 5.3,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 5.3"
   },
   {
     "id": "CVE-2026-71491",
@@ -2505,7 +2732,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-71491",
     "cvss": null,
     "severity": "UNKNOWN",
-    "tier": "public"
+    "tier": "public",
+    "meta": "Unscored"
   },
   {
     "id": "CVE-2026-71979",
@@ -2516,7 +2744,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-71979",
     "cvss": 7.5,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.5"
   },
   {
     "id": "CVE-2026-71980",
@@ -2527,7 +2756,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-71980",
     "cvss": 7.5,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.5"
   },
   {
     "id": "CVE-2026-73424",
@@ -2538,7 +2768,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-73424",
     "cvss": 6.5,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.5"
   },
   {
     "id": "CVE-2026-73522",
@@ -2549,7 +2780,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-73522",
     "cvss": 7.5,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.5"
   },
   {
     "id": "CVE-2026-73523",
@@ -2560,7 +2792,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-73523",
     "cvss": 7.5,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.5"
   },
   {
     "id": "CVE-2026-74253",
@@ -2571,7 +2804,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74253",
     "cvss": null,
     "severity": "UNKNOWN",
-    "tier": "public"
+    "tier": "public",
+    "meta": "Unscored"
   },
   {
     "id": "CVE-2026-74254",
@@ -2582,7 +2816,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74254",
     "cvss": null,
     "severity": "UNKNOWN",
-    "tier": "public"
+    "tier": "public",
+    "meta": "Unscored"
   },
   {
     "id": "CVE-2026-12553",
@@ -2593,7 +2828,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-12553",
     "cvss": null,
     "severity": "UNKNOWN",
-    "tier": "public"
+    "tier": "public",
+    "meta": "Unscored"
   },
   {
     "id": "CVE-2026-17639",
@@ -2604,7 +2840,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-17639",
     "cvss": null,
     "severity": "UNKNOWN",
-    "tier": "public"
+    "tier": "public",
+    "meta": "Unscored"
   },
   {
     "id": "CVE-2026-45698",
@@ -2615,7 +2852,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-45698",
     "cvss": 7.5,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.5"
   },
   {
     "id": "CVE-2026-50773",
@@ -2626,7 +2864,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-50773",
     "cvss": 7.8,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.8"
   },
   {
     "id": "CVE-2026-50774",
@@ -2637,7 +2876,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-50774",
     "cvss": 9.8,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.8"
   },
   {
     "id": "CVE-2026-50775",
@@ -2648,7 +2888,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-50775",
     "cvss": 9.8,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.8"
   },
   {
     "id": "CVE-2026-50776",
@@ -2659,7 +2900,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-50776",
     "cvss": 7.5,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.5"
   },
   {
     "id": "CVE-2026-60106",
@@ -2670,7 +2912,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-60106",
     "cvss": null,
     "severity": "UNKNOWN",
-    "tier": "public"
+    "tier": "public",
+    "meta": "Unscored"
   },
   {
     "id": "CVE-2026-60107",
@@ -2681,7 +2924,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-60107",
     "cvss": null,
     "severity": "UNKNOWN",
-    "tier": "public"
+    "tier": "public",
+    "meta": "Unscored"
   },
   {
     "id": "CVE-2026-66792",
@@ -2692,7 +2936,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-66792",
     "cvss": 9.9,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.9"
   },
   {
     "id": "CVE-2026-71693",
@@ -2703,7 +2948,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-71693",
     "cvss": null,
     "severity": "UNKNOWN",
-    "tier": "public"
+    "tier": "public",
+    "meta": "Unscored"
   },
   {
     "id": "CVE-2026-74238",
@@ -2714,7 +2960,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74238",
     "cvss": 7.5,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.5"
   },
   {
     "id": "CVE-2026-75011",
@@ -2725,7 +2972,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-75011",
     "cvss": 6.3,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.3"
   },
   {
     "id": "CVE-2026-19478",
@@ -2736,7 +2984,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19478",
     "cvss": 9.1,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.1"
   },
   {
     "id": "CVE-2026-19650",
@@ -2747,7 +2996,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19650",
     "cvss": 7.1,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.1"
   },
   {
     "id": "CVE-2026-52886",
@@ -2758,7 +3008,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-52886",
     "cvss": null,
     "severity": "UNKNOWN",
-    "tier": "public"
+    "tier": "public",
+    "meta": "Unscored"
   },
   {
     "id": "CVE-2026-54758",
@@ -2769,7 +3020,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-54758",
     "cvss": 7.8,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.8"
   },
   {
     "id": "CVE-2026-57233",
@@ -2780,7 +3032,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-57233",
     "cvss": 8.1,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 8.1"
   },
   {
     "id": "CVE-2026-57485",
@@ -2791,7 +3044,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-57485",
     "cvss": 8.5,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 8.5"
   },
   {
     "id": "CVE-2026-63667",
@@ -2802,7 +3056,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-63667",
     "cvss": 6.5,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.5"
   },
   {
     "id": "CVE-2026-63669",
@@ -2813,7 +3068,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-63669",
     "cvss": 6.5,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.5"
   },
   {
     "id": "CVE-2026-63670",
@@ -2824,7 +3080,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-63670",
     "cvss": 6.1,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.1"
   },
   {
     "id": "CVE-2026-67678",
@@ -2835,7 +3092,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-67678",
     "cvss": 9.8,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.8"
   },
   {
     "id": "CVE-2026-68004",
@@ -2846,7 +3104,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-68004",
     "cvss": 9.8,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.8"
   },
   {
     "id": "CVE-2026-68005",
@@ -2857,7 +3116,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-68005",
     "cvss": 7.5,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.5"
   },
   {
     "id": "CVE-2026-70495",
@@ -2868,7 +3128,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-70495",
     "cvss": 8.8,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 8.8"
   },
   {
     "id": "CVE-2026-71472",
@@ -2879,7 +3140,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-71472",
     "cvss": 9.1,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.1"
   },
   {
     "id": "CVE-2026-71486",
@@ -2890,7 +3152,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-71486",
     "cvss": 4.3,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 4.3"
   },
   {
     "id": "CVE-2026-71553",
@@ -2901,7 +3164,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-71553",
     "cvss": null,
     "severity": "UNKNOWN",
-    "tier": "public"
+    "tier": "public",
+    "meta": "Unscored"
   },
   {
     "id": "CVE-2026-71858",
@@ -2912,7 +3176,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-71858",
     "cvss": null,
     "severity": "UNKNOWN",
-    "tier": "public"
+    "tier": "public",
+    "meta": "Unscored"
   },
   {
     "id": "CVE-2026-74234",
@@ -2923,7 +3188,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74234",
     "cvss": null,
     "severity": "UNKNOWN",
-    "tier": "public"
+    "tier": "public",
+    "meta": "Unscored"
   },
   {
     "id": "CVE-2026-75012",
@@ -2934,7 +3200,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-75012",
     "cvss": 6.5,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.5"
   },
   {
     "id": "CVE-2026-75013",
@@ -2945,7 +3212,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-75013",
     "cvss": 6.5,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.5"
   },
   {
     "id": "CVE-2026-75014",
@@ -2956,7 +3224,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-75014",
     "cvss": 7.3,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.3"
   },
   {
     "id": "CVE-2026-19589",
@@ -2967,7 +3236,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19589",
     "cvss": 7.1,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.1"
   },
   {
     "id": "CVE-2026-34398",
@@ -2978,7 +3248,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-34398",
     "cvss": 7.8,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.8"
   },
   {
     "id": "CVE-2026-34399",
@@ -2989,7 +3260,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-34399",
     "cvss": 7.8,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.8"
   },
   {
     "id": "CVE-2026-34789",
@@ -3000,7 +3272,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-34789",
     "cvss": 7,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7"
   },
   {
     "id": "CVE-2026-35219",
@@ -3011,7 +3284,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-35219",
     "cvss": null,
     "severity": "UNKNOWN",
-    "tier": "public"
+    "tier": "public",
+    "meta": "Unscored"
   },
   {
     "id": "CVE-2026-39254",
@@ -3022,7 +3296,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-39254",
     "cvss": 9.8,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.8"
   },
   {
     "id": "CVE-2026-39255",
@@ -3033,7 +3308,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-39255",
     "cvss": 9.8,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.8"
   },
   {
     "id": "CVE-2026-40506",
@@ -3044,7 +3320,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-40506",
     "cvss": 6.5,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.5"
   },
   {
     "id": "CVE-2026-44845",
@@ -3055,7 +3332,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-44845",
     "cvss": 6.7,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.7"
   },
   {
     "id": "CVE-2026-44846",
@@ -3066,7 +3344,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-44846",
     "cvss": 6.2,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.2"
   },
   {
     "id": "CVE-2026-47683",
@@ -3077,7 +3356,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-47683",
     "cvss": null,
     "severity": "UNKNOWN",
-    "tier": "public"
+    "tier": "public",
+    "meta": "Unscored"
   },
   {
     "id": "CVE-2026-47686",
@@ -3088,7 +3368,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-47686",
     "cvss": 9.9,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.9"
   },
   {
     "id": "CVE-2026-47698",
@@ -3099,7 +3380,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-47698",
     "cvss": 9.8,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.8"
   },
   {
     "id": "CVE-2026-54336",
@@ -3110,7 +3392,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-54336",
     "cvss": 5.4,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 5.4"
   },
   {
     "id": "CVE-2026-54356",
@@ -3121,7 +3404,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-54356",
     "cvss": 7.1,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.1"
   },
   {
     "id": "CVE-2026-63409",
@@ -3132,7 +3416,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-63409",
     "cvss": 8.2,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 8.2"
   },
   {
     "id": "CVE-2026-64657",
@@ -3143,7 +3428,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-64657",
     "cvss": 8.4,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 8.4"
   },
   {
     "id": "CVE-2026-65640",
@@ -3154,7 +3440,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-65640",
     "cvss": 8.8,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 8.8"
   },
   {
     "id": "CVE-2026-65822",
@@ -3165,7 +3452,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-65822",
     "cvss": 7.6,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.6"
   },
   {
     "id": "CVE-2026-65832",
@@ -3176,7 +3464,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-65832",
     "cvss": 8.2,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 8.2"
   },
   {
     "id": "CVE-2026-65974",
@@ -3187,7 +3476,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-65974",
     "cvss": 9.9,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.9"
   },
   {
     "id": "CVE-2026-65976",
@@ -3198,7 +3488,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-65976",
     "cvss": 6.5,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.5"
   },
   {
     "id": "CVE-2026-66795",
@@ -3209,7 +3500,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-66795",
     "cvss": 9.9,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.9"
   },
   {
     "id": "CVE-2026-67917",
@@ -3220,7 +3512,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-67917",
     "cvss": 9.8,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.8"
   },
   {
     "id": "CVE-2026-67925",
@@ -3231,7 +3524,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-67925",
     "cvss": 6.1,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.1"
   },
   {
     "id": "CVE-2026-67926",
@@ -3242,7 +3536,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-67926",
     "cvss": 9.8,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.8"
   },
   {
     "id": "CVE-2026-67965",
@@ -3253,7 +3548,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-67965",
     "cvss": 9.8,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.8"
   },
   {
     "id": "CVE-2026-67966",
@@ -3264,7 +3560,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-67966",
     "cvss": 9.8,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.8"
   },
   {
     "id": "CVE-2026-67967",
@@ -3275,7 +3572,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-67967",
     "cvss": 9.8,
     "severity": "CRITICAL",
-    "tier": "restricted"
+    "tier": "restricted",
+    "meta": "CRITICAL · CVSS 9.8"
   },
   {
     "id": "CVE-2026-68765",
@@ -3286,7 +3584,8 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-68765",
     "cvss": 6.1,
     "severity": "MEDIUM",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "MEDIUM · CVSS 6.1"
   },
   {
     "id": "CVE-2026-71518",
@@ -3297,6 +3596,7 @@
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-71518",
     "cvss": 7.5,
     "severity": "HIGH",
-    "tier": "internal"
+    "tier": "internal",
+    "meta": "HIGH · CVSS 7.5"
   }
 ]
