@@ -106,6 +106,10 @@ export function AskExperience({ brand }: { brand: BrandConfig }) {
 
       <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-10 py-10 sm:py-14">
         <div className="max-w-3xl mx-auto text-center">
+          <div className="flex justify-center mb-4">
+            <CorpusBadge accentColor={brand.accentColor} />
+          </div>
+
           <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-gray-900">
             Ask a question about recent security advisories
           </h2>
@@ -140,8 +144,6 @@ export function AskExperience({ brand }: { brand: BrandConfig }) {
           </form>
 
           <div className="mt-5 flex flex-col items-center gap-4">
-            <CorpusBadge accentColor={brand.accentColor} />
-
             {turns.length === 0 && (
               <div className="w-full max-w-2xl">
                 <p className="text-xs uppercase tracking-wide text-gray-400 mb-3">Try one of these</p>
