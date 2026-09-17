@@ -190,7 +190,16 @@ export function AskExperience({ brand }: { brand: BrandConfig }) {
             Ask a question about recent security{' '}
             <span style={{ color: brand.accentColor }}>advisories</span>
           </h2>
-          <p className="text-gray-500 mt-3 text-base">
+          <p
+            className="mt-3 mx-auto"
+            style={{
+              maxWidth: 430,
+              fontSize: 17,
+              lineHeight: 1.7,
+              color: '#526274',
+              fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+            }}
+          >
             Plain English in, a cited answer out — no keywords, no filters to figure out.
           </p>
 
