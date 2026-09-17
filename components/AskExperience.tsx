@@ -186,11 +186,9 @@ export function AskExperience({ brand }: { brand: BrandConfig }) {
 
       <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-10 py-10 sm:py-14">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="font-serif font-normal tracking-tight leading-[1.08] text-gray-900 text-[40px] sm:text-6xl">
+          <h2 className="font-semibold tracking-tight leading-[1.15] text-gray-900 text-[36px] sm:text-5xl">
             Ask a question about recent security{' '}
-            <em className="italic" style={{ color: brand.accentColor }}>
-              advisories
-            </em>
+            <span style={{ color: brand.accentColor }}>advisories</span>
           </h2>
           <p className="text-gray-500 mt-3 text-base">
             Plain English in, a cited answer out — no keywords, no filters to figure out.
