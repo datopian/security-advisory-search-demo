@@ -55,10 +55,14 @@ export function RoleToggle({
   role,
   onChange,
   accentColor,
+  showHint = false,
+  onDismissHint,
 }: {
   role: Role
   onChange: (role: Role) => void
   accentColor: string
+  showHint?: boolean
+  onDismissHint?: () => void
 }) {
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
@@ -81,11 +85,23 @@ export function RoleToggle({
             <button
               key={r}
               type="button"
-              onClick={() => onChange(r)}
+              onClick={() => {
+                onChange(r)
+                onDismissHint?.()
+              }}
               title={`View as ${ROLE_SHORT[r]}`}
-              className="flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-full transition-all"
+              className="relative flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-full transition-all"
               style={active ? { backgroundColor: accentColor, color: 'white' } : { color: '#6b7280' }}
             >
+              {showHint && r === 'admin' && (
+                <span
+                  className="absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full animate-ping"
+                  style={{ backgroundColor: accentColor }}
+                />
+              )}
+              {showHint && r === 'admin' && (
+                <span className="absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full" style={{ backgroundColor: accentColor }} />
+              )}
               {ROLE_ICON[r]}
               <span className="hidden sm:inline">{ROLE_SHORT[r]}</span>
             </button>
@@ -106,6 +122,19 @@ export function RoleToggle({
           Switching roles re-runs your last question and changes which documents can be used to answer
           it. Simulated for this demo — a real deployment ties roles to your SSO/identity provider and
           enforces this server-side.
+        </div>
+      )}
+
+      {showHint && !open && (
+        <div
+          className="absolute z-30 top-full right-0 mt-2 w-56 rounded-xl px-3.5 py-2.5 text-xs font-medium text-white shadow-lg animate-fade-up"
+          style={{ backgroundColor: accentColor }}
+        >
+          👆 Try Admin — see how the answer changes
+          <span
+            className="absolute -top-1 right-6 h-2 w-2 rotate-45"
+            style={{ backgroundColor: accentColor }}
+          />
         </div>
       )}
     </div>

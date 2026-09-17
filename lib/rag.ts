@@ -1,4 +1,4 @@
-// Server-only: retrieval + generation for the /api/ask endpoint.
+// Server-only: retrieval + generation for the /api/ask/* endpoints.
 // Never import this from client components — it pulls in the full corpus
 // text (including restricted-tier documents) which must not reach the
 // browser bundle for any role.
@@ -7,6 +7,7 @@ import embeddingsData from '../data/embeddings.json'
 import { AdvisoryDoc, Citation, Role, Tier, TIER_ALLOWED_FOR_ROLE } from './types'
 
 const CORPUS = corpusData as AdvisoryDoc[]
+const CORPUS_BY_ID = new Map<string, AdvisoryDoc>(CORPUS.map((d) => [d.id, d]))
 const EMBEDDINGS = new Map<string, number[]>(
   (embeddingsData as { id: string; vector: number[] }[]).map((e) => [e.id, e.vector])
 )
@@ -24,6 +25,11 @@ const CONTEXT_DOC_COUNT = 5
 // returns *some* ranking — including 5 essentially-random "citations" for a
 // question that isn't about the corpus at all.
 const RELEVANCE_THRESHOLD = 0.3
+
+const OFF_TOPIC_MESSAGE =
+  "That doesn't look like something these advisories cover. Try asking about a security vulnerability or an affected product — for example, \"which vulnerabilities affect remote access software this year?\""
+const RESTRICTED_MESSAGE =
+  'None of the advisories that match this question are visible at your current access level. Switch roles, or ask about a topic covered by public advisories.'
 
 function cosineSim(a: number[], b: number[]): number {
   let dot = 0
@@ -74,6 +80,50 @@ function rankCorpus(queryVector: number[]): ScoredDoc[] {
     .filter(({ score }) => score >= RELEVANCE_THRESHOLD)
     .sort((a, b) => b.score - a.score)
     .slice(0, CANDIDATE_POOL_SIZE)
+}
+
+function toCitation(doc: AdvisoryDoc): Citation {
+  return { id: doc.id, title: doc.title, date: doc.date, sourceUrl: doc.sourceUrl, tier: doc.tier }
+}
+
+export interface RetrievalOutcome {
+  done: boolean
+  answer?: string
+  citations: Citation[]
+  totalMatching: number
+  visibleMatching: number
+  contextDocIds?: string[]
+}
+
+// Phase 1: embed the question and rank the corpus. Fast (no LLM call), so
+// the client can show a genuine "searching" state bounded by real work,
+// then a genuine "writing" state once phase 2 starts — not an arbitrary
+// timer standing in for progress.
+export async function retrieveForQuestion(question: string, role: Role): Promise<RetrievalOutcome> {
+  const allowedTiers: Tier[] = TIER_ALLOWED_FOR_ROLE[role]
+
+  const queryVector = await embedQuery(question)
+  const ranked = rankCorpus(queryVector)
+
+  const totalMatching = ranked.length
+  const visible = ranked.filter(({ doc }) => allowedTiers.includes(doc.tier))
+  const visibleMatching = visible.length
+
+  if (totalMatching === 0) {
+    return { done: true, answer: OFF_TOPIC_MESSAGE, citations: [], totalMatching, visibleMatching: 0 }
+  }
+  if (visible.length === 0) {
+    return { done: true, answer: RESTRICTED_MESSAGE, citations: [], totalMatching, visibleMatching: 0 }
+  }
+
+  const contextDocs = visible.slice(0, CONTEXT_DOC_COUNT).map((r) => r.doc)
+  return {
+    done: false,
+    citations: contextDocs.map(toCitation),
+    totalMatching,
+    visibleMatching,
+    contextDocIds: contextDocs.map((d) => d.id),
+  }
 }
 
 async function synthesizeAnswer(
@@ -145,56 +195,28 @@ function extractFollowups(raw: string): { answer: string; followups: string[] } 
   return { answer, followups }
 }
 
-export interface AskResult {
+export interface AnswerOutcome {
   answer: string
-  citations: Citation[]
-  totalMatching: number
-  visibleMatching: number
   followups: string[]
 }
 
-export async function answerQuestion(question: string, role: Role): Promise<AskResult> {
+// Phase 2: given the context doc IDs phase 1 already determined were
+// permitted for this role, generate the answer. Re-validates role
+// permission against the actual corpus rather than trusting the client's
+// echoed IDs, so a tampered request can never smuggle a restricted
+// document into the LLM's context.
+export async function answerForContext(
+  question: string,
+  role: Role,
+  contextDocIds: string[]
+): Promise<AnswerOutcome | null> {
   const allowedTiers: Tier[] = TIER_ALLOWED_FOR_ROLE[role]
+  const contextDocs = contextDocIds
+    .map((id) => CORPUS_BY_ID.get(id))
+    .filter((d): d is AdvisoryDoc => !!d && allowedTiers.includes(d.tier))
+    .slice(0, CONTEXT_DOC_COUNT)
 
-  const queryVector = await embedQuery(question)
-  const ranked = rankCorpus(queryVector)
+  if (contextDocs.length === 0) return null
 
-  const totalMatching = ranked.length
-  const visible = ranked.filter(({ doc }) => allowedTiers.includes(doc.tier))
-  const visibleMatching = visible.length
-
-  if (totalMatching === 0) {
-    return {
-      answer:
-        "That doesn't look like something these advisories cover. Try asking about a security vulnerability or an affected product — for example, \"which vulnerabilities affect remote access software this year?\"",
-      citations: [],
-      totalMatching,
-      visibleMatching,
-      followups: [],
-    }
-  }
-
-  if (visible.length === 0) {
-    return {
-      answer:
-        "None of the advisories that match this question are visible at your current access level. Switch roles, or ask about a topic covered by public advisories.",
-      citations: [],
-      totalMatching,
-      visibleMatching,
-      followups: [],
-    }
-  }
-
-  const context = visible.slice(0, CONTEXT_DOC_COUNT).map((r) => r.doc)
-  const { answer, followups } = await synthesizeAnswer(question, context)
-
-  const citations: Citation[] = context.map((d) => ({
-    id: d.id,
-    title: d.title,
-    date: d.date,
-    sourceUrl: d.sourceUrl,
-    tier: d.tier,
-  }))
-
-  return { answer, citations, totalMatching, visibleMatching, followups }
+  return synthesizeAnswer(question, contextDocs)
 }

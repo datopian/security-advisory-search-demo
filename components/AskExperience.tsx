@@ -1,11 +1,11 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { BrandHeader } from './BrandHeader'
 import { Footer } from './Footer'
 import { RoleToggle } from './RoleToggle'
 import { AnswerPanel } from './AnswerPanel'
 import { CorpusBadge } from './CorpusBadge'
 import { BrandConfig } from '../lib/brands'
-import { AskResponse, ROLE_LABELS, Role } from '../lib/types'
+import { Citation, ROLE_LABELS, Role } from '../lib/types'
 
 const EXAMPLE_QUESTIONS = [
   'Which vulnerabilities affect remote access software this year?',
@@ -16,13 +16,21 @@ const EXAMPLE_QUESTIONS = [
   'Are there any SQL injection vulnerabilities reported?',
 ]
 
+const ROLE_HINT_AUTO_DISMISS_MS = 6000
+
+type TurnStatus = 'searching' | 'answering' | 'done' | 'error'
+
 interface Turn {
   id: number
   question: string
   role: Role
-  loading: boolean
+  status: TurnStatus
   error: string | null
-  result: AskResponse | null
+  answer?: string
+  citations: Citation[]
+  totalMatching: number
+  visibleMatching: number
+  followups: string[]
 }
 
 function AskIcon() {
@@ -38,7 +46,7 @@ function AskIcon() {
   )
 }
 
-function ThinkingIndicator({ color }: { color: string }) {
+function SearchingIndicator({ color }: { color: string }) {
   return (
     <div className="mt-5 flex items-center gap-3 text-sm text-gray-500">
       <div className="flex gap-1">
@@ -46,7 +54,7 @@ function ThinkingIndicator({ color }: { color: string }) {
         <span className="thinking-dot h-2 w-2 rounded-full" style={{ backgroundColor: color }} />
         <span className="thinking-dot h-2 w-2 rounded-full" style={{ backgroundColor: color }} />
       </div>
-      Reading through the reports…
+      Searching 300 recent advisories…
     </div>
   )
 }
@@ -55,27 +63,85 @@ export function AskExperience({ brand }: { brand: BrandConfig }) {
   const [inputValue, setInputValue] = useState('')
   const [role, setRole] = useState<Role>('public')
   const [turns, setTurns] = useState<Turn[]>([])
+  const [showRoleHint, setShowRoleHint] = useState(false)
   const nextId = useRef(0)
+  const hintTimer = useRef<ReturnType<typeof setTimeout>>()
+  const hasShownRoleHint = useRef(false)
 
-  const isBusy = turns.some((t) => t.loading)
+  const isBusy = turns.some((t) => t.status === 'searching' || t.status === 'answering')
+
+  useEffect(() => {
+    return () => clearTimeout(hintTimer.current)
+  }, [])
+
+  function patchTurn(id: number, patch: Partial<Turn>) {
+    setTurns((prev) => prev.map((t) => (t.id === id ? { ...t, ...patch } : t)))
+  }
 
   async function ask(question: string, r: Role) {
     if (!question.trim() || isBusy) return
     const id = nextId.current++
-    setTurns((prev) => [...prev, { id, question, role: r, loading: true, error: null, result: null }])
+    setTurns((prev) => [
+      ...prev,
+      {
+        id,
+        question,
+        role: r,
+        status: 'searching',
+        error: null,
+        citations: [],
+        totalMatching: 0,
+        visibleMatching: 0,
+        followups: [],
+      },
+    ])
 
     try {
-      const res = await fetch('/api/ask', {
+      const retrieveRes = await fetch('/api/ask/retrieve', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({ question, role: r }),
       })
-      const json = await res.json()
-      if (!res.ok) throw new Error(json.error || 'Request failed')
-      setTurns((prev) => prev.map((t) => (t.id === id ? { ...t, loading: false, result: json } : t)))
+      const retrieveData = await retrieveRes.json()
+      if (!retrieveRes.ok) throw new Error(retrieveData.error || 'Request failed')
+
+      if (retrieveData.done) {
+        patchTurn(id, {
+          status: 'done',
+          answer: retrieveData.answer,
+          citations: retrieveData.citations,
+          totalMatching: retrieveData.totalMatching,
+          visibleMatching: retrieveData.visibleMatching,
+          followups: [],
+        })
+        return
+      }
+
+      patchTurn(id, {
+        status: 'answering',
+        citations: retrieveData.citations,
+        totalMatching: retrieveData.totalMatching,
+        visibleMatching: retrieveData.visibleMatching,
+      })
+
+      const answerRes = await fetch('/api/ask/answer', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ question, role: r, contextDocIds: retrieveData.contextDocIds }),
+      })
+      const answerData = await answerRes.json()
+      if (!answerRes.ok) throw new Error(answerData.error || 'Request failed')
+
+      patchTurn(id, { status: 'done', answer: answerData.answer, followups: answerData.followups })
+
+      if (!hasShownRoleHint.current && r === 'public') {
+        hasShownRoleHint.current = true
+        setShowRoleHint(true)
+        hintTimer.current = setTimeout(() => setShowRoleHint(false), ROLE_HINT_AUTO_DISMISS_MS)
+      }
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Something went wrong'
-      setTurns((prev) => prev.map((t) => (t.id === id ? { ...t, loading: false, error: message } : t)))
+      patchTurn(id, { status: 'error', error: message })
     }
   }
 
@@ -92,6 +158,11 @@ export function AskExperience({ brand }: { brand: BrandConfig }) {
     if (lastQuestion) ask(lastQuestion, newRole)
   }
 
+  function dismissRoleHint() {
+    clearTimeout(hintTimer.current)
+    setShowRoleHint(false)
+  }
+
   return (
     <div
       className="min-h-screen flex flex-col"
@@ -101,15 +172,20 @@ export function AskExperience({ brand }: { brand: BrandConfig }) {
     >
       <BrandHeader
         brand={brand}
-        right={<RoleToggle role={role} onChange={handleRoleChange} accentColor={brand.accentColor} />}
+        subtitle={<CorpusBadge accentColor={brand.accentColor} />}
+        right={
+          <RoleToggle
+            role={role}
+            onChange={handleRoleChange}
+            accentColor={brand.accentColor}
+            showHint={showRoleHint}
+            onDismissHint={dismissRoleHint}
+          />
+        }
       />
 
       <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-10 py-10 sm:py-14">
         <div className="max-w-3xl mx-auto text-center">
-          <div className="flex justify-center mb-4">
-            <CorpusBadge accentColor={brand.accentColor} />
-          </div>
-
           <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-gray-900">
             Ask a question about recent security advisories
           </h2>
@@ -190,16 +266,22 @@ export function AskExperience({ brand }: { brand: BrandConfig }) {
                   </div>
                 )}
 
-                {turn.loading && <ThinkingIndicator color={brand.accentColor} />}
+                {turn.status === 'searching' && <SearchingIndicator color={brand.accentColor} />}
 
-                {turn.result && (
+                {(turn.status === 'answering' || turn.status === 'done') && (
                   <AnswerPanel
-                    result={turn.result}
                     accentColor={brand.accentColor}
                     question={turn.question}
+                    answer={turn.answer}
+                    isAnswering={turn.status === 'answering'}
+                    citations={turn.citations}
+                    totalMatching={turn.totalMatching}
+                    visibleMatching={turn.visibleMatching}
+                    followups={turn.followups}
                     fallbackSuggestions={EXAMPLE_QUESTIONS}
                     onAskFollowup={(q) => ask(q, role)}
-                    showSuggestions={isLast}
+                    showSuggestions={isLast && turn.status === 'done'}
+                    animate={isLast}
                   />
                 )}
               </div>

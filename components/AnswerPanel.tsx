@@ -1,7 +1,7 @@
-import { CSSProperties, useState } from 'react'
+import { CSSProperties, useEffect, useState } from 'react'
 import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
-import { AskResponse } from '../lib/types'
+import { Citation } from '../lib/types'
 
 const TIER_STYLE: Record<string, { dot: string; badge: string }> = {
   public: { dot: '#16a34a', badge: 'bg-emerald-50 text-emerald-700' },
@@ -10,6 +10,37 @@ const TIER_STYLE: Record<string, { dot: string; badge: string }> = {
 }
 
 const VISIBLE_BY_DEFAULT = 4
+// Characters revealed per tick when animating a freshly-arrived answer —
+// tuned to feel like fast, fluent reading rather than a slow typewriter or
+// an instant dump.
+const REVEAL_CHARS_PER_TICK = 6
+const REVEAL_TICK_MS = 12
+
+function useRevealedText(fullText: string | undefined, animate: boolean): string {
+  const [revealed, setRevealed] = useState(animate ? '' : fullText || '')
+
+  useEffect(() => {
+    if (!fullText) {
+      setRevealed('')
+      return
+    }
+    if (!animate) {
+      setRevealed(fullText)
+      return
+    }
+    setRevealed('')
+    let i = 0
+    const id = setInterval(() => {
+      i += REVEAL_CHARS_PER_TICK
+      setRevealed(fullText.slice(0, i))
+      if (i >= fullText.length) clearInterval(id)
+    }, REVEAL_TICK_MS)
+    return () => clearInterval(id)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fullText])
+
+  return revealed
+}
 
 function SparkleIcon({ color }: { color: string }) {
   return (
@@ -60,25 +91,60 @@ function SuggestionChips({
   )
 }
 
+function AnswerSkeleton({ accentColor, label }: { accentColor: string; label?: string }) {
+  return (
+    <div>
+      {label && (
+        <div className="flex items-center gap-2.5 mb-4 text-sm" style={{ color: accentColor }}>
+          <div className="flex gap-1">
+            <span className="thinking-dot h-1.5 w-1.5 rounded-full" style={{ backgroundColor: accentColor }} />
+            <span className="thinking-dot h-1.5 w-1.5 rounded-full" style={{ backgroundColor: accentColor }} />
+            <span className="thinking-dot h-1.5 w-1.5 rounded-full" style={{ backgroundColor: accentColor }} />
+          </div>
+          {label}
+        </div>
+      )}
+      <div className="space-y-2.5 animate-pulse">
+        <div className="h-3.5 rounded-full w-11/12" style={{ backgroundColor: accentColor + '14' }} />
+        <div className="h-3.5 rounded-full w-full" style={{ backgroundColor: accentColor + '14' }} />
+        <div className="h-3.5 rounded-full w-4/5" style={{ backgroundColor: accentColor + '14' }} />
+      </div>
+    </div>
+  )
+}
+
 export function AnswerPanel({
-  result,
   accentColor,
   question,
+  answer,
+  isAnswering,
+  citations,
+  totalMatching,
+  visibleMatching,
+  followups,
   fallbackSuggestions,
   onAskFollowup,
   showSuggestions = true,
+  animate = false,
 }: {
-  result: AskResponse
   accentColor: string
   question: string
+  answer?: string
+  isAnswering: boolean
+  citations: Citation[]
+  totalMatching: number
+  visibleMatching: number
+  followups: string[]
   fallbackSuggestions: string[]
   onAskFollowup: (q: string) => void
   showSuggestions?: boolean
+  animate?: boolean
 }) {
   const [expanded, setExpanded] = useState(false)
-  const hiddenCount = result.citations.length - VISIBLE_BY_DEFAULT
-  const visibleCitations = expanded ? result.citations : result.citations.slice(0, VISIBLE_BY_DEFAULT)
-  const withheld = result.totalMatching - result.visibleMatching
+  const displayedAnswer = useRevealedText(answer, animate)
+  const hiddenCount = citations.length - VISIBLE_BY_DEFAULT
+  const visibleCitations = expanded ? citations : citations.slice(0, VISIBLE_BY_DEFAULT)
+  const withheld = totalMatching - visibleMatching
 
   // Tailwind Typography reads these CSS variables, so the accent colours the
   // bold product/vendor names the model emits — the cheapest way to give the
@@ -105,22 +171,25 @@ export function AnswerPanel({
                 Answer
               </span>
             </div>
-            <div
-              className="prose max-w-none prose-p:leading-7 prose-p:my-3 first:prose-p:mt-0 last:prose-p:mb-0 prose-strong:font-semibold prose-ul:my-3 prose-li:my-1 text-[15px]"
-              style={proseVars}
-            >
-              <ReactMarkdown>{result.answer}</ReactMarkdown>
-            </div>
+            {isAnswering || !answer ? (
+              <AnswerSkeleton
+                accentColor={accentColor}
+                label={isAnswering ? `Found ${visibleMatching} relevant — writing your answer…` : undefined}
+              />
+            ) : (
+              <div
+                className="prose max-w-none prose-p:leading-7 prose-p:my-3 first:prose-p:mt-0 last:prose-p:mb-0 prose-strong:font-semibold prose-ul:my-3 prose-li:my-1 text-[15px]"
+                style={proseVars}
+              >
+                <ReactMarkdown>{displayedAnswer}</ReactMarkdown>
+              </div>
+            )}
           </div>
 
           {showSuggestions &&
-            (result.citations.length > 0 ? (
-              <SuggestionChips
-                label="Keep exploring"
-                questions={result.followups}
-                accentColor={accentColor}
-                onAsk={onAskFollowup}
-              />
+            !isAnswering &&
+            (citations.length > 0 ? (
+              <SuggestionChips label="Keep exploring" questions={followups} accentColor={accentColor} onAsk={onAskFollowup} />
             ) : (
               <SuggestionChips
                 label="Try asking instead"
@@ -132,26 +201,28 @@ export function AnswerPanel({
         </div>
 
         <aside className="lg:col-span-2 space-y-3">
-          <div
-            className="rounded-xl p-3.5 flex items-start gap-2.5"
-            style={{ backgroundColor: accentColor + '0d', color: accentColor }}
-          >
-            <span className="mt-0.5">
-              <LockIcon />
-            </span>
-            <div className="text-xs leading-relaxed">
-              <p className="font-semibold">
-                {result.visibleMatching} of {result.totalMatching} documents used
-              </p>
-              <p className="opacity-80 mt-0.5">
-                {withheld > 0
-                  ? `${withheld} more matched but sit above your access level.`
-                  : 'You can see every matching document at this level.'}
-              </p>
+          {totalMatching > 0 && (
+            <div
+              className="rounded-xl p-3.5 flex items-start gap-2.5"
+              style={{ backgroundColor: accentColor + '0d', color: accentColor }}
+            >
+              <span className="mt-0.5">
+                <LockIcon />
+              </span>
+              <div className="text-xs leading-relaxed">
+                <p className="font-semibold">
+                  {visibleMatching} of {totalMatching} documents used
+                </p>
+                <p className="opacity-80 mt-0.5">
+                  {withheld > 0
+                    ? `${withheld} more matched but sit above your access level.`
+                    : 'You can see every matching document at this level.'}
+                </p>
+              </div>
             </div>
-          </div>
+          )}
 
-          {result.citations.length > 0 && (
+          {citations.length > 0 && (
             <div className="rounded-xl border border-gray-100 bg-white p-2">
               <p className="text-[11px] uppercase tracking-wide text-gray-400 px-2 pt-1 pb-1.5">Sources</p>
               <ul>

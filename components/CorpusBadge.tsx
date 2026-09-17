@@ -23,21 +23,20 @@ export function CorpusBadge({ accentColor }: { accentColor: string }) {
   }, [])
 
   return (
-    <div ref={ref} className="relative inline-block">
+    <div ref={ref} className="relative inline-flex items-center gap-1.5 text-xs text-gray-400">
+      <span className="h-1.5 w-1.5 rounded-full shrink-0" style={{ backgroundColor: accentColor }} />
+      <span>Searching 300 recent security vulnerability reports · public demo data</span>
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="inline-flex items-center gap-1.5 rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs text-gray-500 hover:border-gray-300 hover:text-gray-700 transition-colors"
+        className="text-gray-300 hover:text-gray-500 transition-colors shrink-0"
+        aria-label="More about this demo"
       >
-        <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: accentColor }} />
-        300 recent security vulnerability reports · public demo data
-        <span style={{ color: accentColor }}>
-          <InfoIcon />
-        </span>
+        <InfoIcon />
       </button>
 
       {open && (
-        <div className="absolute z-20 top-full mt-2 left-1/2 -translate-x-1/2 w-80 max-w-[90vw] rounded-xl border border-gray-200 bg-white p-4 text-xs text-gray-600 leading-relaxed shadow-lg text-left animate-fade-up">
+        <div className="absolute z-20 top-full mt-2 left-0 w-80 max-w-[90vw] rounded-xl border border-gray-200 bg-white p-4 text-xs text-gray-600 leading-relaxed shadow-lg text-left animate-fade-up">
           <div className="flex items-center justify-center gap-1.5 mb-3 text-[11px] font-medium text-gray-500">
             <span className="px-2 py-1 rounded-full bg-gray-50 border border-gray-100">Your reports</span>
             <span style={{ color: accentColor }}>→</span>

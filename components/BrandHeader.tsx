@@ -2,7 +2,15 @@ import { ReactNode } from 'react'
 import Link from 'next/link'
 import { BrandConfig } from '../lib/brands'
 
-export function BrandHeader({ brand, right }: { brand: BrandConfig; right?: ReactNode }) {
+export function BrandHeader({
+  brand,
+  right,
+  subtitle,
+}: {
+  brand: BrandConfig
+  right?: ReactNode
+  subtitle?: ReactNode
+}) {
   const heading = brand.displayName ? `${brand.displayName} — Threat Advisory Search` : 'Threat Advisory Search'
 
   return (
@@ -31,6 +39,7 @@ export function BrandHeader({ brand, right }: { brand: BrandConfig; right?: Reac
               Demo
             </span>
           </Link>
+          {subtitle && <div className="mt-0.5 hidden sm:block">{subtitle}</div>}
         </div>
         {right}
       </div>

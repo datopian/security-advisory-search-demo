@@ -34,11 +34,21 @@ export interface Citation {
   tier: Tier
 }
 
-export interface AskResponse {
-  answer: string
+// Two-phase ask flow: /api/ask/retrieve resolves fast (search only) so the
+// client can show real, meaningful progress; /api/ask/answer does the LLM
+// generation. This lets the UI show genuine "searching" vs "writing" states
+// instead of one opaque round trip, and lets sources render before the
+// answer text is ready.
+export interface RetrieveResponse {
+  done: boolean
+  answer?: string
   citations: Citation[]
   totalMatching: number
   visibleMatching: number
+  contextDocIds?: string[]
+}
+
+export interface AnswerResponse {
+  answer: string
   followups: string[]
-  role: Role
 }

@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { answerQuestion } from '../../lib/rag'
-import { AskResponse, Role } from '../../lib/types'
-import { checkRateLimit, clientIp } from '../../lib/rateLimit'
+import { retrieveForQuestion } from '../../../lib/rag'
+import { RetrieveResponse, Role } from '../../../lib/types'
+import { checkRateLimit, clientIp } from '../../../lib/rateLimit'
 
 const VALID_ROLES: Role[] = ['public', 'analyst', 'admin']
 
@@ -13,7 +13,13 @@ function log(event: string, fields: Record<string, unknown>) {
   console.log(JSON.stringify({ event, ts: new Date().toISOString(), ...fields }))
 }
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<AskResponse | { error: string }>) {
+// Phase 1 of the two-phase ask flow (see lib/rag.ts): search only, no LLM
+// call. Rate limiting is enforced here, once per question — phase 2
+// (pages/api/ask/answer.ts) is only ever reachable after this succeeds.
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<RetrieveResponse | { error: string }>
+) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST')
     return res.status(405).json({ error: 'Method not allowed' })
@@ -39,20 +45,26 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   const startedAt = Date.now()
   try {
-    const result = await answerQuestion(question.trim(), role as Role)
-    log('ask_ok', {
+    const result = await retrieveForQuestion(question.trim(), role as Role)
+    log('ask_retrieve_ok', {
       ip,
       role,
       questionLength: question.length,
+      done: result.done,
       totalMatching: result.totalMatching,
       visibleMatching: result.visibleMatching,
-      citations: result.citations.length,
       durationMs: Date.now() - startedAt,
     })
-    return res.status(200).json({ ...result, role })
+    return res.status(200).json(result)
   } catch (err) {
     const message = err instanceof Error ? err.message : 'Unknown error'
-    log('ask_error', { ip, role, questionLength: question.length, error: message, durationMs: Date.now() - startedAt })
-    return res.status(502).json({ error: `Could not generate an answer: ${message}` })
+    log('ask_retrieve_error', {
+      ip,
+      role,
+      questionLength: question.length,
+      error: message,
+      durationMs: Date.now() - startedAt,
+    })
+    return res.status(502).json({ error: `Could not search the advisories: ${message}` })
   }
 }
