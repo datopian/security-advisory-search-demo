@@ -178,7 +178,7 @@ export function AnswerPanel({
               />
             ) : (
               <div
-                className="prose max-w-none prose-p:leading-7 prose-p:my-3 first:prose-p:mt-0 last:prose-p:mb-0 prose-strong:font-semibold prose-ul:my-3 prose-li:my-1 text-[15px]"
+                className="prose max-w-none prose-p:leading-7 prose-p:my-5 first:prose-p:mt-0 last:prose-p:mb-0 prose-strong:font-semibold prose-ul:my-5 prose-ol:my-5 prose-li:my-2 text-[15px]"
                 style={proseVars}
               >
                 <ReactMarkdown>{displayedAnswer}</ReactMarkdown>

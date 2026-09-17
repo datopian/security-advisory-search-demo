@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-inter)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['Verdana', 'Geneva', 'Tahoma', 'sans-serif'],
       },
       keyframes: {
         'fade-up': {
