@@ -7,7 +7,7 @@ export function BrandHeader({ brand, right }: { brand: BrandConfig; right?: Reac
 
   return (
     <header className="sticky top-0 z-20 backdrop-blur bg-white/85 border-b border-gray-100">
-      <div className="max-w-6xl mx-auto px-4 sm:px-8 py-4 flex items-center gap-3">
+      <div className="max-w-7xl mx-auto px-4 sm:px-10 py-4 flex items-center gap-3">
         {brand.logoUrl ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img src={brand.logoUrl} alt={`${brand.displayName} logo`} className="h-8 w-auto shrink-0" />

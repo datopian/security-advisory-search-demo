@@ -6,7 +6,7 @@ export function Footer({ brand }: { brand: BrandConfig }) {
     : 'Illustrative example built on public advisory data.'
 
   return (
-    <footer className="max-w-6xl mx-auto w-full px-4 sm:px-8 py-8 mt-8 border-t border-gray-100 text-center sm:text-left">
+    <footer className="max-w-7xl mx-auto w-full px-4 sm:px-10 py-8 mt-8 border-t border-gray-100 text-center sm:text-left">
       <p className="text-xs text-gray-400">{disclaimer}</p>
     </footer>
   )
