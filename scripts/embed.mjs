@@ -22,10 +22,14 @@ const DATA_DIR = path.join(__dirname, '..', 'data', corpusId)
 
 const MODEL = 'voyage-4-lite'
 // Voyage throttles accounts with no payment method on file to 3 requests/min
-// and 10K tokens/min. Small batches + fixed pacing keep us under both caps
-// without needing a card on file (the free 200M-token allowance still
-// applies either way).
-const BATCH_SIZE = 16
+// and 10K tokens/min. Fixed pacing keeps us under the request-rate cap; a
+// token-budget-based batch size (rather than a fixed doc count) keeps us
+// under the token cap regardless of how long a given corpus's documents
+// are — a batch of 16 short CVE descriptions is nowhere near 10K tokens,
+// but 16 long GOV.UK guidance pages comfortably blows past it.
+const TARGET_TOKENS_PER_BATCH = 8_000
+const MAX_DOCS_PER_BATCH = 40
+const CHARS_PER_TOKEN_ESTIMATE = 4
 const MIN_MS_BETWEEN_REQUESTS = 21_000
 const MAX_RETRIES = 5
 const API_KEY = process.env.VOYAGE_API_KEY
@@ -35,10 +39,24 @@ if (!API_KEY) {
   process.exit(1)
 }
 
-function chunk(arr, size) {
-  const out = []
-  for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size))
-  return out
+// Greedily fills each batch up to TARGET_TOKENS_PER_BATCH (estimated from
+// text length) or MAX_DOCS_PER_BATCH docs, whichever comes first.
+function batchByTokenBudget(docs, textOf) {
+  const batches = []
+  let current = []
+  let currentTokens = 0
+  for (const doc of docs) {
+    const tokens = Math.ceil(textOf(doc).length / CHARS_PER_TOKEN_ESTIMATE)
+    if (current.length > 0 && (currentTokens + tokens > TARGET_TOKENS_PER_BATCH || current.length >= MAX_DOCS_PER_BATCH)) {
+      batches.push(current)
+      current = []
+      currentTokens = 0
+    }
+    current.push(doc)
+    currentTokens += tokens
+  }
+  if (current.length > 0) batches.push(current)
+  return batches
 }
 
 function sleep(ms) {
@@ -76,12 +94,14 @@ async function main() {
   const corpus = JSON.parse(await readFile(path.join(DATA_DIR, 'corpus.json'), 'utf-8'))
   console.log(`Embedding ${corpus.length} documents with ${MODEL}...`)
 
-  const batches = chunk(corpus, BATCH_SIZE)
+  const textOf = (d) => `${d.title}\n\n${d.description}`
+  const batches = batchByTokenBudget(corpus, textOf)
+  console.log(`Split into ${batches.length} token-budget batches (target ~${TARGET_TOKENS_PER_BATCH} tokens each).`)
   const entries = []
   for (let i = 0; i < batches.length; i++) {
     const requestStart = Date.now()
     const batch = batches[i]
-    const texts = batch.map((d) => `${d.title}\n\n${d.description}`)
+    const texts = batch.map(textOf)
     const vectors = await embedBatch(texts)
     for (let j = 0; j < batch.length; j++) {
       entries.push({ id: batch[j].id, vector: vectors[j] })
