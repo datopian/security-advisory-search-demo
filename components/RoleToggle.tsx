@@ -1,6 +1,14 @@
-import { Role, ROLE_LABELS } from '../lib/types'
+import { useEffect, useRef, useState } from 'react'
+import { Role } from '../lib/types'
 
 const ROLES: Role[] = ['public', 'analyst', 'admin']
+
+// Shorter than ROLE_LABELS — this sits in the header, where space is tight.
+const ROLE_SHORT: Record<Role, string> = {
+  public: 'Public',
+  analyst: 'Analyst',
+  admin: 'Admin',
+}
 
 const ROLE_ICON: Record<Role, JSX.Element> = {
   public: (
@@ -33,6 +41,16 @@ const ROLE_ICON: Record<Role, JSX.Element> = {
   ),
 }
 
+function InfoIcon() {
+  return (
+    <svg viewBox="0 0 20 20" fill="none" className="h-3.5 w-3.5">
+      <circle cx="10" cy="10" r="7.25" stroke="currentColor" strokeWidth="1.4" />
+      <path d="M10 9v4.2" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+      <circle cx="10" cy="6.7" r="0.9" fill="currentColor" />
+    </svg>
+  )
+}
+
 export function RoleToggle({
   role,
   onChange,
@@ -42,12 +60,21 @@ export function RoleToggle({
   onChange: (role: Role) => void
   accentColor: string
 }) {
+  const [open, setOpen] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    function onClickOutside(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false)
+    }
+    document.addEventListener('mousedown', onClickOutside)
+    return () => document.removeEventListener('mousedown', onClickOutside)
+  }, [])
+
   return (
-    <div className="flex flex-col items-center gap-1.5">
-      <div className="flex items-center gap-2 text-xs text-gray-400">
-        <span className="uppercase tracking-wide">Viewing as</span>
-      </div>
-      <div className="flex items-center gap-1 rounded-full border border-gray-200 p-1 bg-white shadow-sm">
+    <div ref={ref} className="relative flex items-center gap-1.5">
+      <span className="hidden md:inline text-[10px] uppercase tracking-wider text-gray-400">Demo role</span>
+      <div className="flex items-center gap-0.5 rounded-full border border-gray-200 p-0.5 bg-white shadow-sm">
         {ROLES.map((r) => {
           const active = r === role
           return (
@@ -55,23 +82,32 @@ export function RoleToggle({
               key={r}
               type="button"
               onClick={() => onChange(r)}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-full transition-all"
-              style={
-                active
-                  ? { backgroundColor: accentColor, color: 'white' }
-                  : { color: '#4b5563' }
-              }
+              title={`View as ${ROLE_SHORT[r]}`}
+              className="flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-full transition-all"
+              style={active ? { backgroundColor: accentColor, color: 'white' } : { color: '#6b7280' }}
             >
               {ROLE_ICON[r]}
-              {ROLE_LABELS[r]}
+              <span className="hidden sm:inline">{ROLE_SHORT[r]}</span>
             </button>
           )
         })}
       </div>
-      <p className="text-[11px] text-gray-400 max-w-[420px] text-center leading-snug">
-        Try another role — the answer above updates instantly. (Simulated for this demo; a real
-        deployment ties roles to your SSO/identity provider and enforces this server-side.)
-      </p>
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        className="text-gray-300 hover:text-gray-500 transition-colors"
+        aria-label="About the role selector"
+      >
+        <InfoIcon />
+      </button>
+
+      {open && (
+        <div className="absolute z-30 top-full right-0 mt-2 w-72 max-w-[85vw] rounded-xl border border-gray-200 bg-white p-3.5 text-xs text-gray-600 leading-relaxed shadow-lg text-left animate-fade-up">
+          Switching roles re-runs your last question and changes which documents can be used to answer
+          it. Simulated for this demo — a real deployment ties roles to your SSO/identity provider and
+          enforces this server-side.
+        </div>
+      )}
     </div>
   )
 }

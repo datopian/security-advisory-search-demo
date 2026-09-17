@@ -9,7 +9,7 @@ export interface BrandConfig {
 
 export const DEFAULT_BRAND: BrandConfig = {
   displayName: '',
-  accentColor: '#0f172a',
+  accentColor: '#4f46e5',
   tagline: 'Ask a plain-language question, get a cited answer.',
   logoUrl: null,
 }

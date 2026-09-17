@@ -23,62 +23,6 @@ interface Turn {
   loading: boolean
   error: string | null
   result: AskResponse | null
-  isExample?: boolean
-}
-
-// A real, previously-captured response (not fabricated) shown pre-loaded on
-// first visit, so a visitor sees a complete answer before typing anything.
-// Keeps the page's very first impression reliable and free (no live API
-// call) while still being genuine: every citation below links to the real
-// document.
-const SEED_TURN: Turn = {
-  id: -1,
-  question: 'Are there any critical flaws in widely used content management systems?',
-  role: 'public',
-  loading: false,
-  error: null,
-  isExample: true,
-  result: {
-    answer:
-      "Based on the provided advisories, there are several flaws in widely used CMS platforms:\n\n**ApostropheCMS** has a prototype pollution vulnerability (CVE-2026-71553) in version 4.32.0 and earlier that allows authenticated editors to cause a persistent denial of service by overwriting Object.prototype.toString.\n\n**Joomla** has two separate vulnerabilities: an unauthenticated remote code execution in the Sourcerer extension before 16.0.0 (CVE-2026-74253) through unverified user input, and a SQL injection flaw in Page Builder CK before 3.6.5 (CVE-2026-74254).\n\n**OutSystems Service Center** is vulnerable to DOM-based XSS attacks via malicious filenames in file uploads (CVE-2026-40126), fixed in version 11.41.2.\n\nHowever, the provided advisories don't specify severity levels for these issues, so I cannot confirm which are \"critical\" versus moderate.",
-    citations: [
-      {
-        id: 'CVE-2026-71553',
-        title: 'CVE-2026-71553: ApostropheCMS is an open-source Node.js content management system. In…',
-        date: '2026-08-17',
-        sourceUrl: 'https://nvd.nist.gov/vuln/detail/CVE-2026-71553',
-        tier: 'public',
-      },
-      {
-        id: 'CVE-2026-74253',
-        title: 'CVE-2026-74253: Joomla Extension - regularlabs.com - Unauthenticated RCE through…',
-        date: '2026-08-17',
-        sourceUrl: 'https://nvd.nist.gov/vuln/detail/CVE-2026-74253',
-        tier: 'public',
-      },
-      {
-        id: 'CVE-2026-40126',
-        title: 'CVE-2026-40126: OutSystems Service Center is vulnerable to a DOM-based Cross-Site…',
-        date: '2026-08-17',
-        sourceUrl: 'https://nvd.nist.gov/vuln/detail/CVE-2026-40126',
-        tier: 'public',
-      },
-      {
-        id: 'CVE-2026-74254',
-        title: 'CVE-2026-74254: Joomla Extension - joomlack.fr - SQL injection in Page Builder CK <…',
-        date: '2026-08-17',
-        sourceUrl: 'https://nvd.nist.gov/vuln/detail/CVE-2026-74254',
-        tier: 'public',
-      },
-    ],
-    totalMatching: 15,
-    visibleMatching: 4,
-    followups: [
-      'How do I update ApostropheCMS to fix the denial of service issue?',
-      'Which Joomla extension poses the biggest security risk?',
-    ],
-    role: 'public',
-  },
 }
 
 function AskIcon() {
@@ -96,7 +40,7 @@ function AskIcon() {
 
 function ThinkingIndicator({ color }: { color: string }) {
   return (
-    <div className="mt-4 flex items-center gap-3 text-sm text-gray-500">
+    <div className="mt-5 flex items-center gap-3 text-sm text-gray-500">
       <div className="flex gap-1">
         <span className="thinking-dot h-2 w-2 rounded-full" style={{ backgroundColor: color }} />
         <span className="thinking-dot h-2 w-2 rounded-full" style={{ backgroundColor: color }} />
@@ -110,11 +54,10 @@ function ThinkingIndicator({ color }: { color: string }) {
 export function AskExperience({ brand }: { brand: BrandConfig }) {
   const [inputValue, setInputValue] = useState('')
   const [role, setRole] = useState<Role>('public')
-  const [turns, setTurns] = useState<Turn[]>([SEED_TURN])
+  const [turns, setTurns] = useState<Turn[]>([])
   const nextId = useRef(0)
 
   const isBusy = turns.some((t) => t.loading)
-  const hasAskedOwnQuestion = turns.some((t) => !t.isExample)
 
   async function ask(question: string, r: Role) {
     if (!question.trim() || isBusy) return
@@ -153,82 +96,87 @@ export function AskExperience({ brand }: { brand: BrandConfig }) {
     <div
       className="min-h-screen flex flex-col"
       style={{
-        background: `radial-gradient(1200px circle at 50% -10%, ${brand.accentColor}12, transparent 55%), #fafafa`,
+        background: `radial-gradient(900px circle at 15% -5%, ${brand.accentColor}14, transparent 50%), radial-gradient(900px circle at 85% 0%, ${brand.accentColor}0d, transparent 45%), #fafafa`,
       }}
     >
-      <BrandHeader brand={brand} />
+      <BrandHeader
+        brand={brand}
+        right={<RoleToggle role={role} onChange={handleRoleChange} accentColor={brand.accentColor} />}
+      />
 
-      <main className="flex-1 max-w-3xl mx-auto w-full px-4 sm:px-6 py-12">
-        <div className="text-center mb-5">
-          <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">
+      <main className="flex-1 max-w-6xl mx-auto w-full px-4 sm:px-8 py-10 sm:py-14">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-gray-900">
             Ask a question about recent security advisories
           </h2>
-          <p className="text-gray-500 mt-2 text-sm sm:text-base">
+          <p className="text-gray-500 mt-3 text-base">
             Plain English in, a cited answer out — no keywords, no filters to figure out.
           </p>
-          <p className="text-gray-400 mt-1 text-xs">
-            Every answer is checked against real documents — never invented.
-          </p>
-        </div>
 
-        <div className="mb-8 flex justify-center">
-          <CorpusBadge accentColor={brand.accentColor} />
-        </div>
+          <form onSubmit={handleSubmit} className="flex gap-2 mt-7">
+            <div className="flex-1 relative">
+              <span className="absolute left-4 top-1/2 -translate-y-1/2">
+                <AskIcon />
+              </span>
+              <input
+                type="text"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                placeholder="Ask about a security vulnerability or affected product..."
+                className="w-full rounded-2xl border border-gray-200 bg-white pl-11 pr-4 py-4 text-[15px] focus:outline-none transition-shadow"
+                style={{ boxShadow: '0 1px 2px rgba(0,0,0,0.04)' }}
+                onFocus={(e) => (e.currentTarget.style.boxShadow = `0 0 0 3px ${brand.accentColor}22`)}
+                onBlur={(e) => (e.currentTarget.style.boxShadow = '0 1px 2px rgba(0,0,0,0.04)')}
+              />
+            </div>
+            <button
+              type="submit"
+              disabled={isBusy || !inputValue.trim()}
+              className="px-7 py-4 rounded-2xl text-sm font-medium text-white disabled:opacity-40 shadow-sm hover:opacity-90 transition-opacity"
+              style={{ backgroundColor: brand.accentColor }}
+            >
+              {isBusy ? 'Asking…' : 'Ask'}
+            </button>
+          </form>
 
-        <div className="mb-6 flex justify-center">
-          <RoleToggle role={role} onChange={handleRoleChange} accentColor={brand.accentColor} />
-        </div>
+          <div className="mt-5 flex flex-col items-center gap-4">
+            <CorpusBadge accentColor={brand.accentColor} />
 
-        <form onSubmit={handleSubmit} className="flex gap-2">
-          <div className="flex-1 relative">
-            <span className="absolute left-4 top-1/2 -translate-y-1/2">
-              <AskIcon />
-            </span>
-            <input
-              type="text"
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              placeholder="Ask about a security vulnerability or affected product..."
-              className="w-full rounded-2xl border border-gray-200 bg-white pl-11 pr-4 py-3.5 text-sm shadow-sm focus:outline-none focus:ring-2 transition-shadow"
-              style={{ boxShadow: '0 1px 2px rgba(0,0,0,0.04)' }}
-              onFocus={(e) => (e.currentTarget.style.boxShadow = `0 0 0 3px ${brand.accentColor}22`)}
-              onBlur={(e) => (e.currentTarget.style.boxShadow = '0 1px 2px rgba(0,0,0,0.04)')}
-            />
+            {turns.length === 0 && (
+              <div className="w-full">
+                <p className="text-xs uppercase tracking-wide text-gray-400 mb-3">Try one of these</p>
+                <div className="flex flex-wrap justify-center gap-2">
+                  {EXAMPLE_QUESTIONS.map((q) => (
+                    <button
+                      key={q}
+                      type="button"
+                      onClick={() => ask(q, role)}
+                      className="text-sm px-4 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-600 hover:-translate-y-px hover:shadow-sm transition-all"
+                      style={{ borderColor: brand.accentColor + '26' }}
+                    >
+                      {q}
+                    </button>
+                  ))}
+                </div>
+                <p className="text-xs text-gray-400 mt-5">
+                  Every answer is checked against real documents — never invented.
+                </p>
+              </div>
+            )}
           </div>
-          <button
-            type="submit"
-            disabled={isBusy || !inputValue.trim()}
-            className="px-6 py-3.5 rounded-2xl text-sm font-medium text-white disabled:opacity-40 shadow-sm hover:opacity-90 transition-opacity"
-            style={{ backgroundColor: brand.accentColor }}
-          >
-            {isBusy ? 'Asking…' : 'Ask'}
-          </button>
-        </form>
+        </div>
 
-        {!hasAskedOwnQuestion && (
-          <div className="flex flex-wrap justify-center gap-2 mt-4">
-            {EXAMPLE_QUESTIONS.map((q) => (
-              <button
-                key={q}
-                type="button"
-                onClick={() => ask(q, role)}
-                className="text-xs px-3 py-1.5 rounded-full border border-gray-200 bg-white text-gray-500 hover:border-gray-300 hover:text-gray-700 transition-colors"
-              >
-                {q}
-              </button>
-            ))}
-          </div>
-        )}
-
-        <div className="mt-10 space-y-10">
+        <div className="mt-12 space-y-12">
           {turns.map((turn, i) => {
             const isLast = i === turns.length - 1
             return (
-              <div key={turn.id} className={i > 0 ? 'pt-8 border-t border-gray-100' : ''}>
+              <div key={turn.id} className={i > 0 ? 'pt-10 border-t border-gray-200/70' : ''}>
                 <div className="flex items-start justify-between gap-3 flex-wrap">
-                  <p className="text-base sm:text-lg font-medium text-gray-800">{turn.question}</p>
-                  <span className="text-[11px] text-gray-400 whitespace-nowrap mt-1.5">
-                    {turn.isExample ? 'Example · ' : 'Asked as '}
+                  <p className="text-lg sm:text-xl font-medium text-gray-900">{turn.question}</p>
+                  <span
+                    className="text-[11px] font-medium px-2.5 py-1 rounded-full whitespace-nowrap"
+                    style={{ backgroundColor: brand.accentColor + '0f', color: brand.accentColor }}
+                  >
                     {ROLE_LABELS[turn.role]}
                   </span>
                 </div>

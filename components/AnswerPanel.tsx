@@ -1,26 +1,29 @@
-import { useState } from 'react'
+import { CSSProperties, useState } from 'react'
 import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
 import { AskResponse } from '../lib/types'
 
-const TIER_DOT: Record<string, string> = {
-  public: '#16a34a',
-  internal: '#d97706',
-  restricted: '#dc2626',
+const TIER_STYLE: Record<string, { dot: string; badge: string }> = {
+  public: { dot: '#16a34a', badge: 'bg-emerald-50 text-emerald-700' },
+  internal: { dot: '#d97706', badge: 'bg-amber-50 text-amber-700' },
+  restricted: { dot: '#dc2626', badge: 'bg-rose-50 text-rose-700' },
 }
 
-const TIER_BADGE: Record<string, string> = {
-  public: 'bg-green-50 text-green-700',
-  internal: 'bg-amber-50 text-amber-700',
-  restricted: 'bg-red-50 text-red-700',
-}
-
-const VISIBLE_BY_DEFAULT = 3
+const VISIBLE_BY_DEFAULT = 4
 
 function SparkleIcon({ color }: { color: string }) {
   return (
     <svg viewBox="0 0 20 20" fill={color} className="h-4 w-4 shrink-0">
       <path d="M10 2.5 11.4 7.6 16.5 9l-5.1 1.4L10 15.5 8.6 10.4 3.5 9l5.1-1.4L10 2.5Z" />
+    </svg>
+  )
+}
+
+function LockIcon() {
+  return (
+    <svg viewBox="0 0 20 20" fill="none" className="h-3.5 w-3.5 shrink-0">
+      <rect x="4.5" y="8.5" width="11" height="7.5" rx="2" stroke="currentColor" strokeWidth="1.4" />
+      <path d="M7.25 8.5V6.75a2.75 2.75 0 0 1 5.5 0V8.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
     </svg>
   )
 }
@@ -38,7 +41,7 @@ function SuggestionChips({
 }) {
   if (questions.length === 0) return null
   return (
-    <div className="px-1">
+    <div>
       <p className="text-xs uppercase tracking-wide text-gray-400 mb-2">{label}</p>
       <div className="flex flex-wrap gap-2">
         {questions.map((q) => (
@@ -46,8 +49,8 @@ function SuggestionChips({
             key={q}
             type="button"
             onClick={() => onAsk(q)}
-            className="text-xs px-3 py-1.5 rounded-full border transition-colors"
-            style={{ borderColor: accentColor + '40', color: accentColor }}
+            className="text-sm px-3.5 py-2 rounded-xl font-medium transition-all hover:-translate-y-px hover:shadow-sm text-left"
+            style={{ backgroundColor: accentColor + '0f', color: accentColor }}
           >
             {q}
           </button>
@@ -75,89 +78,122 @@ export function AnswerPanel({
   const [expanded, setExpanded] = useState(false)
   const hiddenCount = result.citations.length - VISIBLE_BY_DEFAULT
   const visibleCitations = expanded ? result.citations : result.citations.slice(0, VISIBLE_BY_DEFAULT)
+  const withheld = result.totalMatching - result.visibleMatching
+
+  // Tailwind Typography reads these CSS variables, so the accent colours the
+  // bold product/vendor names the model emits — the cheapest way to give the
+  // answer visual rhythm without restyling every element.
+  const proseVars = {
+    '--tw-prose-bold': accentColor,
+    '--tw-prose-body': '#374151',
+  } as CSSProperties
 
   return (
-    <div className="mt-8 space-y-4 animate-fade-up">
-      <div
-        className="rounded-2xl border border-gray-200 bg-white p-7 shadow-sm relative overflow-hidden"
-        style={{ borderLeftWidth: 3, borderLeftColor: accentColor }}
-      >
-        <div className="flex items-center gap-2 mb-4">
-          <SparkleIcon color={accentColor} />
-          <span className="text-xs font-semibold uppercase tracking-wide" style={{ color: accentColor }}>
-            Answer
-          </span>
-        </div>
-        <div className="prose max-w-none text-gray-800 prose-p:leading-7 prose-p:my-3 first:prose-p:mt-0 last:prose-p:mb-0 prose-strong:text-gray-900 prose-strong:font-semibold prose-ul:my-3 prose-li:my-1 text-base">
-          <ReactMarkdown>{result.answer}</ReactMarkdown>
-        </div>
-      </div>
-
-      <div className="flex items-center justify-between px-1 gap-3 flex-wrap">
-        <span
-          className="text-xs font-medium px-3 py-1 rounded-full"
-          style={{ backgroundColor: accentColor + '14', color: accentColor }}
-        >
-          Filtered to what you're allowed to see: {result.visibleMatching} of {result.totalMatching} matches
-        </span>
-      </div>
-
-      {result.citations.length > 0 && (
-        <div>
-          <p className="text-[11px] uppercase tracking-wide text-gray-400 mb-1 px-1">Sources</p>
-          <ul>
-            {visibleCitations.map((c) => (
-              <li key={c.id}>
-                <Link
-                  href={`/documents/${c.id}?q=${encodeURIComponent(question)}`}
-                  className="flex items-center gap-2 py-1.5 px-2 rounded-lg hover:bg-gray-50 transition-colors group"
-                >
-                  <span className="h-1.5 w-1.5 rounded-full shrink-0" style={{ backgroundColor: TIER_DOT[c.tier] }} />
-                  <span
-                    className="text-sm truncate group-hover:underline flex-1 min-w-0"
-                    style={{ color: accentColor }}
-                  >
-                    {c.title}
-                  </span>
-                  <span
-                    className={`text-[9px] font-medium uppercase tracking-wide px-1.5 py-0.5 rounded-full whitespace-nowrap shrink-0 ${TIER_BADGE[c.tier]}`}
-                  >
-                    {c.tier}
-                  </span>
-                  <span className="text-xs text-gray-400 whitespace-nowrap shrink-0">{c.date}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-          {hiddenCount > 0 && !expanded && (
-            <button
-              type="button"
-              onClick={() => setExpanded(true)}
-              className="text-xs px-2 py-1 mt-0.5 font-medium hover:underline"
-              style={{ color: accentColor }}
+    <div className="mt-6 animate-fade-up">
+      <div className="grid lg:grid-cols-5 gap-5 items-start">
+        <div className="lg:col-span-3 space-y-5">
+          <div
+            className="rounded-2xl border shadow-sm p-6 sm:p-7"
+            style={{
+              borderColor: accentColor + '26',
+              background: `linear-gradient(180deg, ${accentColor}0a, #ffffff 120px)`,
+            }}
+          >
+            <div className="flex items-center gap-2 mb-4">
+              <SparkleIcon color={accentColor} />
+              <span className="text-xs font-semibold uppercase tracking-wide" style={{ color: accentColor }}>
+                Answer
+              </span>
+            </div>
+            <div
+              className="prose max-w-none prose-p:leading-7 prose-p:my-3 first:prose-p:mt-0 last:prose-p:mb-0 prose-strong:font-semibold prose-ul:my-3 prose-li:my-1 text-[15px]"
+              style={proseVars}
             >
-              + {hiddenCount} more source{hiddenCount > 1 ? 's' : ''}
-            </button>
-          )}
-        </div>
-      )}
+              <ReactMarkdown>{result.answer}</ReactMarkdown>
+            </div>
+          </div>
 
-      {showSuggestions &&
-        (result.citations.length > 0 ? (
-          <SuggestionChips
-            label="Keep exploring"
-            questions={result.followups}
-            accentColor={accentColor}
-            onAsk={onAskFollowup}
-          />
-        ) : (
-          <SuggestionChips
-            label="Try asking instead"
-            questions={fallbackSuggestions}
-            accentColor={accentColor}
-            onAsk={onAskFollowup}
-          />
-        ))}
+          {showSuggestions &&
+            (result.citations.length > 0 ? (
+              <SuggestionChips
+                label="Keep exploring"
+                questions={result.followups}
+                accentColor={accentColor}
+                onAsk={onAskFollowup}
+              />
+            ) : (
+              <SuggestionChips
+                label="Try asking instead"
+                questions={fallbackSuggestions}
+                accentColor={accentColor}
+                onAsk={onAskFollowup}
+              />
+            ))}
+        </div>
+
+        <aside className="lg:col-span-2 space-y-3">
+          <div
+            className="rounded-xl p-3.5 flex items-start gap-2.5"
+            style={{ backgroundColor: accentColor + '0d', color: accentColor }}
+          >
+            <span className="mt-0.5">
+              <LockIcon />
+            </span>
+            <div className="text-xs leading-relaxed">
+              <p className="font-semibold">
+                {result.visibleMatching} of {result.totalMatching} documents used
+              </p>
+              <p className="opacity-80 mt-0.5">
+                {withheld > 0
+                  ? `${withheld} more matched but sit above your access level.`
+                  : 'You can see every matching document at this level.'}
+              </p>
+            </div>
+          </div>
+
+          {result.citations.length > 0 && (
+            <div className="rounded-xl border border-gray-100 bg-white p-2">
+              <p className="text-[11px] uppercase tracking-wide text-gray-400 px-2 pt-1 pb-1.5">Sources</p>
+              <ul>
+                {visibleCitations.map((c) => (
+                  <li key={c.id}>
+                    <Link
+                      href={`/documents/${c.id}?q=${encodeURIComponent(question)}`}
+                      className="block py-2 px-2 rounded-lg hover:bg-gray-50 transition-colors group"
+                    >
+                      <div className="flex items-center gap-2">
+                        <span
+                          className="h-1.5 w-1.5 rounded-full shrink-0"
+                          style={{ backgroundColor: TIER_STYLE[c.tier].dot }}
+                        />
+                        <span className="text-xs font-semibold text-gray-700 group-hover:underline">{c.id}</span>
+                        <span
+                          className={`text-[9px] font-medium uppercase tracking-wide px-1.5 py-0.5 rounded-full ml-auto shrink-0 ${TIER_STYLE[c.tier].badge}`}
+                        >
+                          {c.tier}
+                        </span>
+                      </div>
+                      <p className="text-xs text-gray-500 mt-1 line-clamp-2 leading-snug">
+                        {c.title.replace(/^CVE-[\d-]+:\s*/, '')}
+                      </p>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              {hiddenCount > 0 && !expanded && (
+                <button
+                  type="button"
+                  onClick={() => setExpanded(true)}
+                  className="text-xs px-2 py-1.5 font-medium hover:underline"
+                  style={{ color: accentColor }}
+                >
+                  + {hiddenCount} more source{hiddenCount > 1 ? 's' : ''}
+                </button>
+              )}
+            </div>
+          )}
+        </aside>
+      </div>
     </div>
   )
 }
