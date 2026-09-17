@@ -149,10 +149,15 @@ Rules:
 - Never mention documents outside the provided excerpts.
 - After your answer, on its own final line, add exactly: FOLLOWUPS: <question 1> | <question 2>
   Two short, natural follow-up questions (each under 12 words) a curious reader might ask next, in
-  plain everyday language (never use the words "CVE" or "NVD"). They should be answerable by this
-  same kind of advisory data in general, not necessarily by the documents you just cited. If you
-  can't think of two sensible ones, write FOLLOWUPS: NONE. This must be the very last line of your
-  output and must never appear anywhere else in your answer.
+  plain everyday language (never use the words "CVE" or "NVD"). This corpus only contains
+  vulnerability *descriptions* (what's affected, how severe, how it's exploited) — it has no
+  remediation guides, patch instructions, or general security best-practice advice. So every
+  follow-up must be a NEW LOOKUP QUESTION IN THE SAME STYLE AS THE ORIGINAL QUESTION — asking about
+  other vulnerabilities, products, vendors, or vulnerability types (e.g. "Are there any advisories
+  about X", "What vulnerabilities affect Y", "Which products have Z issues") — never a "how do I
+  fix/protect/patch/secure/prevent..." question, since this corpus cannot answer those. If you can't
+  think of two sensible lookup-style follow-ups, write FOLLOWUPS: NONE. This must be the very last
+  line of your output and must never appear anywhere else in your answer.
 
 Context excerpts:
 ${contextBlock}`
