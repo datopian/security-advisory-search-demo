@@ -280,6 +280,7 @@ export function AskExperience({ brand, corpusStats }: { brand: BrandConfig; corp
                   <AnswerPanel
                     accentColor={brand.accentColor}
                     question={turn.question}
+                    brandSlug={brand.slug}
                     answer={turn.answer}
                     isAnswering={turn.status === 'answering'}
                     citations={turn.citations}

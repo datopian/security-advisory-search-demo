@@ -6,11 +6,14 @@ import securityCorpus from '../../data/security/corpus.json'
 import governanceCorpus from '../../data/governance/corpus.json'
 import { CorpusDoc } from '../../lib/types'
 import { CORPORA, CorpusId, getCorpus } from '../../lib/corpora'
+import { resolveBrand } from '../../lib/brands'
+import { BrandHeader } from '../../components/BrandHeader'
+import { Footer } from '../../components/Footer'
 
-const TIER_BADGE: Record<string, string> = {
-  public: 'bg-green-50 text-green-700',
-  internal: 'bg-amber-50 text-amber-700',
-  restricted: 'bg-red-50 text-red-700',
+const TIER_STYLE: Record<string, { dot: string; badge: string }> = {
+  public: { dot: '#16a34a', badge: 'bg-emerald-50 text-emerald-700 ring-1 ring-inset ring-emerald-200' },
+  internal: { dot: '#d97706', badge: 'bg-amber-50 text-amber-700 ring-1 ring-inset ring-amber-200' },
+  restricted: { dot: '#dc2626', badge: 'bg-rose-50 text-rose-700 ring-1 ring-inset ring-rose-200' },
 }
 
 const CORPUS_DATA: Record<CorpusId, CorpusDoc[]> = {
@@ -21,7 +24,13 @@ const CORPUS_DATA: Record<CorpusId, CorpusDoc[]> = {
 export default function DocumentView({ doc, corpusId }: { doc: CorpusDoc; corpusId: CorpusId }) {
   const router = useRouter()
   const question = typeof router.query.q === 'string' ? router.query.q : null
+  // Only known client-side once the router hydrates with the real query
+  // string; resolveBrand's own fallback (this corpus's neutral default)
+  // covers the brief pre-hydration render and any link shared without it.
+  const brandParam = typeof router.query.brand === 'string' ? router.query.brand : corpusId
+  const brand = resolveBrand(brandParam)
   const corpus = getCorpus(corpusId)
+  const tier = TIER_STYLE[doc.tier]
 
   return (
     <>
@@ -30,47 +39,84 @@ export default function DocumentView({ doc, corpusId }: { doc: CorpusDoc; corpus
           {doc.id} — {corpus.label}
         </title>
       </Head>
-      <div className="min-h-screen bg-[#fafafa]">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 py-10">
-          <Link
-            href={`/demo/${corpusId}`}
-            className="text-sm text-gray-500 hover:text-gray-700 inline-flex items-center gap-1"
-          >
-            ← Back to search
-          </Link>
+      <div
+        className="min-h-screen flex flex-col"
+        style={{
+          background: `radial-gradient(900px circle at 15% -5%, ${brand.accentColor}14, transparent 50%), radial-gradient(900px circle at 85% 0%, ${brand.accentColor}0d, transparent 45%), #fafafa`,
+        }}
+      >
+        <BrandHeader brand={brand} />
 
-          <div className="mt-5 flex items-center gap-2 flex-wrap">
-            <h1 className="text-2xl font-semibold tracking-tight text-gray-900 break-words">{doc.id}</h1>
-            <span className={`text-[10px] font-medium uppercase tracking-wide px-2 py-1 rounded-full ${TIER_BADGE[doc.tier]}`}>
-              {doc.tier}
-            </span>
-            {doc.meta && <span className="text-xs text-gray-400">{doc.meta}</span>}
-          </div>
-          <p className="text-sm text-gray-400 mt-1">Published {doc.date}</p>
-
-          {question && (
-            <div className="mt-6 rounded-2xl border border-indigo-100 bg-indigo-50/70 p-4">
-              <p className="text-xs uppercase tracking-wide text-indigo-500 mb-1">Relevant to: “{question}”</p>
-              <p className="text-sm text-indigo-900">{doc.summary}</p>
-            </div>
-          )}
-
-          <div className="mt-6 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
-            <p className="text-xs uppercase tracking-wide text-gray-400 mb-2">Full document text</p>
-            <p className="text-gray-800 leading-relaxed whitespace-pre-wrap text-[15px]">{doc.description}</p>
-          </div>
-
-          <div className="mt-6">
-            <a
-              href={doc.sourceUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-indigo-600 hover:underline"
+        <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-10 py-10 sm:py-14">
+          <div className="max-w-3xl mx-auto">
+            <Link
+              href={`/demo/${brand.slug}`}
+              className="text-sm font-medium hover:underline inline-flex items-center gap-1"
+              style={{ color: brand.accentColor }}
             >
-              View original source at {corpus.sourceName} →
-            </a>
+              ← Back to search
+            </Link>
+
+            <div className="mt-5 flex items-center gap-2 flex-wrap">
+              <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900 break-words">
+                {doc.id}
+              </h1>
+              <span
+                className={`text-[10px] font-medium uppercase tracking-wide px-2 py-1 rounded-full ${tier.badge}`}
+              >
+                {doc.tier}
+              </span>
+              {doc.meta && <span className="text-xs text-gray-400">{doc.meta}</span>}
+            </div>
+            <p className="text-sm text-gray-400 mt-1">Published {doc.date}</p>
+
+            {question && (
+              <div
+                className="mt-6 rounded-2xl p-4"
+                style={{ backgroundColor: brand.accentColor + '0d', border: `1px solid ${brand.accentColor}26` }}
+              >
+                <p className="text-xs uppercase tracking-wide mb-1" style={{ color: brand.accentColor }}>
+                  Relevant to: “{question}”
+                </p>
+                <p className="text-sm text-gray-800">{doc.summary}</p>
+              </div>
+            )}
+
+            <div
+              className="mt-6 rounded-2xl border shadow-sm p-6 sm:p-7"
+              style={{
+                borderColor: brand.accentColor + '26',
+                background: `linear-gradient(180deg, ${brand.accentColor}0a, #ffffff 160px)`,
+              }}
+            >
+              <div className="flex items-center gap-2 mb-4">
+                <span
+                  className="h-1.5 w-1.5 rounded-full shrink-0"
+                  style={{ backgroundColor: tier.dot }}
+                />
+                <span className="text-xs font-semibold uppercase tracking-wide" style={{ color: brand.accentColor }}>
+                  Full document text
+                </span>
+              </div>
+              <p className="text-gray-800 leading-relaxed whitespace-pre-wrap text-[15px]">{doc.description}</p>
+            </div>
+
+            <div className="mt-6">
+              <a
+                href={doc.sourceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-sm font-medium px-4 py-2 rounded-full transition-all hover:-translate-y-px hover:shadow-sm"
+                style={{ backgroundColor: brand.accentColor + '14', color: brand.accentColor }}
+              >
+                View original source at {corpus.sourceName}
+                <span aria-hidden="true">→</span>
+              </a>
+            </div>
           </div>
-        </div>
+        </main>
+
+        <Footer brand={brand} />
       </div>
     </>
   )

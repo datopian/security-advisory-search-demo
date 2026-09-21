@@ -116,6 +116,7 @@ function AnswerSkeleton({ accentColor, label }: { accentColor: string; label?: s
 export function AnswerPanel({
   accentColor,
   question,
+  brandSlug,
   answer,
   isAnswering,
   citations,
@@ -129,6 +130,7 @@ export function AnswerPanel({
 }: {
   accentColor: string
   question: string
+  brandSlug: string
   answer?: string
   isAnswering: boolean
   citations: Citation[]
@@ -229,7 +231,7 @@ export function AnswerPanel({
                 {visibleCitations.map((c) => (
                   <li key={c.id}>
                     <Link
-                      href={`/documents/${c.id}?q=${encodeURIComponent(question)}`}
+                      href={`/documents/${c.id}?q=${encodeURIComponent(question)}&brand=${encodeURIComponent(brandSlug)}`}
                       className="block py-2 px-2 rounded-lg hover:bg-gray-50 transition-colors group"
                     >
                       <div className="flex items-center gap-2">

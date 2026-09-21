@@ -7,6 +7,10 @@ export interface BrandConfig {
   accentColor: string
   tagline?: string
   logoUrl?: string | null
+  /** The /demo/<slug> path this resolved from — carried through to other
+   * pages (e.g. the document view) via a query param, purely so a visitor's
+   * skin stays consistent when they navigate away from the ask page. */
+  slug: string
 }
 
 interface BrandConfigEntry {
@@ -29,6 +33,7 @@ export function getDefaultBrand(corpusId: CorpusId): BrandConfig {
     accentColor: NEUTRAL_ACCENT,
     tagline: NEUTRAL_TAGLINE,
     logoUrl: null,
+    slug: corpusId,
   }
 }
 
@@ -43,7 +48,7 @@ export function resolveBrand(slug: string | undefined | null): BrandConfig {
   const lower = slug.toLowerCase()
   if (isCorpusId(lower)) return getDefaultBrand(lower)
   const entry = BRANDS[lower]
-  if (entry) return { ...getDefaultBrand(entry.corpusId), ...entry }
+  if (entry) return { ...getDefaultBrand(entry.corpusId), ...entry, slug: lower }
   return getDefaultBrand('security')
 }
 
