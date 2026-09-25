@@ -26,12 +26,5 @@
     "accentColor": "#c2410c",
     "tagline": "Ask a question, get a cited answer — not a folder to browse.",
     "logoUrl": null
-  },
-  "smartterm": {
-    "displayName": "SmartTerm",
-    "corpusId": "governance",
-    "accentColor": "#0369a1",
-    "tagline": "Ask a question, get a cited answer — not a folder to browse.",
-    "logoUrl": null
   }
 }
